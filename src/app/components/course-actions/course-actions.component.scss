@@ -1,0 +1,12 @@
+.add-btn {
+    width: 400px;
+    padding: 12px 18px;
+    border-radius: 4px;
+    background-color: var(--cyan-600);
+    color: #ffffff;
+    border: 1px solid var(--cyan-600);
+    height: 48px;
+    &:hover {
+        background-color: var(--cyan-500);
+    }
+}

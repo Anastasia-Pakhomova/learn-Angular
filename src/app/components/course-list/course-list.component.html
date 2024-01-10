@@ -1,1 +1,4 @@
-<p>course-list works!</p>
+<div class="flex flex-column gap-4">
+    <app-course-list-item (edit)="handleEdit($event)" (delete)="handleDelete($event)" *ngFor="let item of courses" [course]="item"></app-course-list-item>
+    <p-button (onClick)="onLoad()" label="Загрузить еще" styleClass="p-button-outlined p-button-secondary w-24rem p-button-lg" class="load-btn"></p-button>
+</div>
