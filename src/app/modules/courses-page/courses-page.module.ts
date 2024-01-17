@@ -10,8 +10,6 @@ import { CourseListItemComponent } from './components/course-list-item/course-li
 import { CourseActionsComponent } from './components/course-actions/course-actions.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { CourseBorderDirective } from 'src/app/directives/course-border.directive';
-import { DurationPipe } from 'src/app/pipes/duration.pipe';
-import { OrderByPipe } from 'src/app/pipes/order-by.pipe';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 
@@ -22,16 +20,14 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
     CourseListComponent,
     CourseListItemComponent,
     CourseActionsComponent,
-    DurationPipe,
     CourseBorderDirective,
-    OrderByPipe
   ],
   imports: [
     CommonModule,
     FormsModule,
     ButtonModule,
     ConfirmDialogModule,
-    ToastModule 
+    ToastModule
   ],
   exports: [
     CoursesPageComponent
