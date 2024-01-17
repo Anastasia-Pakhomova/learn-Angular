@@ -1,19 +1,17 @@
-<div class="card p-4 flex flex-column gap-3">
+<div class="card p-4 flex flex-column gap-3 course" [ngClass]="{'is-rated': course.topRated}" [courseBorder]="course.dateCreation">
     <div class="flex justify-content-between gap-4 w-12">
-        <h2>{{course.title}}</h2>
+        <h3>{{course.title | uppercase}}
+            <i *ngIf="course.topRated" class="pi pi-star-fill" style="vertical-align: top; color: var(--yellow-400)"></i>
+        </h3>
         <div class="flex gap-3">
             <span class="text-sm" style="color: var(--cyan-800)">
                 <i  class="pi pi-clock" style="font-size: 1rem; color: var(--cyan-800)"></i>
-                {{convertDuration(course.duration)}}
+                {{course.duration | duration}}
             </span>
             <span class="text-sm" style="color: var(--cyan-800)">
                 <i  class="pi pi-calendar" style="font-size: 1rem; color: var(--cyan-800)"></i>
-                {{course.dateCreation.toLocaleDateString(undefined, {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}}
-              </span>
+              {{course.dateCreation | date: 'dd MMMM YYYY года': undefined : 'ru'}}
+            </span>
         </div>
     </div>
     <div class="flex justify-content-between gap-4 w-12 align-items-start">

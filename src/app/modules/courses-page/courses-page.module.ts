@@ -4,6 +4,7 @@ import { CoursesPageComponent } from 'src/app/pages/courses-page/courses-page.co
 import { BreadcrumbsComponent } from 'src/app/components/breadcrumbs/breadcrumbs.component';
 import { CourseActionsModule } from '../course-actions/course-actions.module';
 import { CourseListModule } from '../course-list/course-list.module';
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { CourseListModule } from '../course-list/course-list.module';
   ],
   exports: [
     CoursesPageComponent
-  ]
+  ],
+  providers: [FilterPipe]
 })
 export class CoursesPageModule { }

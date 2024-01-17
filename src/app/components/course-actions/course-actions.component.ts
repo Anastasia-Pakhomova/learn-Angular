@@ -1,14 +1,16 @@
-import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-actions',
   templateUrl: './course-actions.component.html',
   styleUrls: ['./course-actions.component.scss']
 })
-export class CourseActionsComponent implements DoCheck {
+export class CourseActionsComponent {
   public searchCourse: any
+  @Input() searchValue: string | undefined;
+  @Output() searchValueChange = new EventEmitter<String>();
 
-  ngDoCheck() {
-    // console.log('searchCourse', typeof this.searchCourse)
+  public onSearch() {
+    this.searchValueChange.emit(this.searchValue);
   }
 }
