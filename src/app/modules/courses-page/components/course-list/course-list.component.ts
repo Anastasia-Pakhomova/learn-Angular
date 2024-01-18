@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CourseInterface } from 'src/app/interfaces/course';
 
 @Component({
@@ -9,16 +9,18 @@ import { CourseInterface } from 'src/app/interfaces/course';
 export class CourseListComponent {
   @Input() courses: CourseInterface[] = []
   public sortingField: keyof CourseInterface = 'dateCreation'
+  @Output() editCourse = new EventEmitter<CourseInterface>()
+  @Output() deleteCourse = new EventEmitter<number>()
 
   public onLoad() {
     console.log('Load more')
   }
 
   public handleEdit(course: CourseInterface) {
-   console.log('course for edit', course)
+   this.editCourse.emit(course)
   }
 
   public handleDelete(id: number) {
-    console.log('course id', id)
-  } 
+    this.deleteCourse.emit(id)
+  }
 }
