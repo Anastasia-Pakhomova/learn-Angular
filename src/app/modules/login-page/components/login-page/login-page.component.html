@@ -1,0 +1,26 @@
+<div class="card p-4 flex flex-column gap-4 login">
+<h2>Вход</h2>
+<div class="flex flex-column gap-2 w-full">
+    <label htmlFor="email">Email*</label>
+    <input 
+    pInputText 
+    id="email" 
+    placeholder="Например user@domain.com" 
+    [(ngModel)]="email" />
+</div>
+<div class="flex flex-column gap-2 w-full">
+    <label htmlFor="password">Пароль*</label>
+    <p-password 
+    id="password"
+    [(ngModel)]="password" 
+    [toggleMask]="true"
+    placeholder="Ваш пароль">
+    </p-password>
+</div>
+<div class="flex justify-content-between align-items-center w-full">
+    <a class="forgot-link" href="/">Забыли пароль?</a>
+    <button (click)="submit()" type="submit" class="login_btn">
+    Войти
+    </button>
+</div>
+</div>
