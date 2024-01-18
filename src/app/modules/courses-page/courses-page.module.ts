@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoursesPageComponent } from 'src/app/pages/courses-page/courses-page.component';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { CoursesPageComponent } from './courses-page.component';
 import { BreadcrumbsComponent } from 'src/app/components/breadcrumbs/breadcrumbs.component';
-import { CourseActionsModule } from '../course-actions/course-actions.module';
-import { CourseListModule } from '../course-list/course-list.module';
+import { CourseListItemComponent } from './components/course-list-item/course-list-item.component';
+import { CourseActionsComponent } from './components/course-actions/course-actions.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { CourseBorderDirective } from 'src/app/directives/course-border.directive';
+import { DurationPipe } from 'src/app/pipes/duration.pipe';
+import { OrderByPipe } from 'src/app/pipes/order-by.pipe';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 
@@ -11,11 +19,19 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
   declarations: [
     CoursesPageComponent,
     BreadcrumbsComponent,
+    CourseListComponent,
+    CourseListItemComponent,
+    CourseActionsComponent,
+    DurationPipe,
+    CourseBorderDirective,
+    OrderByPipe
   ],
   imports: [
     CommonModule,
-    CourseActionsModule,
-    CourseListModule
+    FormsModule,
+    ButtonModule,
+    ConfirmDialogModule,
+    ToastModule 
   ],
   exports: [
     CoursesPageComponent
