@@ -1,0 +1,29 @@
+.login {
+    background-color: #ffffff;
+    width: 368px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+    &_btn {
+        padding: 12px 18px;
+        border-radius: 4px;
+        background-color: var(--cyan-600);
+        color: #ffffff;
+        border: 1px solid var(--cyan-600);
+        height: 48px;
+        outline: none;
+        box-shadow: none;
+        &:hover {
+            background-color: var(--cyan-500);
+        }
+    }
+}
+
+.forgot-link {
+    color: var(--cyan-600);
+    font-size: 14px;
+}
+
+:host ::ng-deep .p-password, :host ::ng-deep .p-password-input {
+    width: 100%;
+}
