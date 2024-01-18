@@ -8,12 +8,11 @@ import { CoursesPageModule } from './modules/courses-page/courses-page.module';
 import { FormsModule } from '@angular/forms';
 import '@angular/common/locales/global/ru';
 import { LoginPageModule } from './modules/login-page/login-page.module';
-import { FilterPipe } from './pipes/filter.pipe';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FilterPipe
+    AppComponent
   ],
   imports: [
     BrowserModule,

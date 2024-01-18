@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses/courses.service';
