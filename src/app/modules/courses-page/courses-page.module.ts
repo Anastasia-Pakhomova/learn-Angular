@@ -11,6 +11,7 @@ import { CourseActionsComponent } from './components/course-actions/course-actio
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { CourseBorderDirective } from 'src/app/directives/course-border.directive';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
+import { CourseEditComponent } from './components/course-edit/course-edit.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
     CourseListItemComponent,
     CourseActionsComponent,
     CourseBorderDirective,
+    CourseEditComponent
   ],
   imports: [
     CommonModule,

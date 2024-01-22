@@ -14,6 +14,7 @@ export class CoursesPageComponent implements OnInit {
   public courseList: CourseInterface[] = []
   public searchCourse: any;
   public filteredCourses: CourseInterface[] = []
+  public courseEditFlag: boolean = false
 
   constructor(
     private filterPipe: FilterPipe,
@@ -43,8 +44,8 @@ export class CoursesPageComponent implements OnInit {
         rejectButtonStyleClass: 'p-button-sm p-button-text',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
-            this.filteredCourses = this.filteredCourses.filter(item => item.id !== id)
             this.coursesService.removeCourse(id)
+            this.filteredCourses = this.filteredCourses.filter(item => item.id !== id)
             this.messageService.add({ severity: 'success', summary: 'Курс удален', detail: 'Вы подтвердили удаление курса', life: 3000 });
         },
         reject: () => {
@@ -59,6 +60,7 @@ export class CoursesPageComponent implements OnInit {
 
    public handleUpdate(course: CourseInterface) {
     console.log('course for edit', course)
+     this.courseEditFlag = true
   }
 
   ngOnInit(): void {
