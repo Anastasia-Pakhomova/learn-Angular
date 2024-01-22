@@ -1,1 +1,32 @@
-<p>course-edit works!</p>
+<div class="card p-4 flex flex-column gap-4 course-edit">
+    <h2>{{title}}</h2>
+    <div class="flex flex-column">
+        <label class="label text-sm" htmlFor="courseName">Наименование*</label>
+        <input class="field" pInputText id="courseName" [(ngModel)]="courseName" />
+    </div>
+    <div class="flex flex-column">
+        <label class="label text-sm" htmlFor="description">Описание*</label>
+        <textarea 
+        id="description" 
+        class="field field_textarea"
+        pInputTextarea
+        autoResize="true"
+        [(ngModel)]="description"></textarea>
+    </div>
+    <app-course-edit-duration></app-course-edit-duration>
+    <div class="flex flex-column">
+    <label class="label text-sm">Дата*</label>
+    <p-calendar 
+    [(ngModel)]="date" 
+    [showIcon]="true"></p-calendar>
+    </div>
+    <app-course-edit-authors></app-course-edit-authors>
+    <div class="flex gap-2">
+        <button (click)="cancel()" type="button" class="btn btn_cancel">
+        Отмена
+        </button>
+        <button (click)="save()" type="button" class="btn btn_save">
+        Сохранить
+        </button>
+    </div>
+</div>
