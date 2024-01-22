@@ -1,0 +1,25 @@
+:host ::ng-deep .p-inputnumber-buttons-stacked {
+    width: 540px;
+    height: 40px;
+}
+:host ::ng-deep .p-inputtext {
+    padding: 10px 12px;
+    &:focus, &:active, &:hover {
+        border: 1px solid var(--cyan-600);
+        outline: none;
+        box-shadow: none;
+    } 
+}
+
+.wrapper {
+    gap: 12px;
+}
+
+.transform-time {
+    padding-top: 20px;
+}
+
+.label {
+    padding-left: 12px;
+    color: var(--bluegray-500);
+}

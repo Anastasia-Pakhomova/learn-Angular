@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { CoursesPageComponent } from './courses-page.component';
 import { BreadcrumbsComponent } from 'src/app/components/breadcrumbs/breadcrumbs.component';
 import { CourseListItemComponent } from './components/course-list-item/course-list-item.component';
@@ -14,6 +16,8 @@ import { DurationPipe } from 'src/app/pipes/duration.pipe';
 import { OrderByPipe } from 'src/app/pipes/order-by.pipe';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CourseEditComponent } from './components/course-edit/course-edit.component';
+import { CourseEditDurationComponent } from './components/course-edit-duration/course-edit-duration.component';
+import { CourseEditAuthorsComponent } from './components/course-edit-authors/course-edit-authors.component';
 
 
 @NgModule({
@@ -26,14 +30,18 @@ import { CourseEditComponent } from './components/course-edit/course-edit.compon
     DurationPipe,
     CourseBorderDirective,
     OrderByPipe,
-    CourseEditComponent
+    CourseEditComponent,
+    CourseEditDurationComponent,
+    CourseEditAuthorsComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ButtonModule,
     ConfirmDialogModule,
-    ToastModule 
+    ToastModule,
+    CalendarModule,
+    InputNumberModule  
   ],
   exports: [
     CoursesPageComponent

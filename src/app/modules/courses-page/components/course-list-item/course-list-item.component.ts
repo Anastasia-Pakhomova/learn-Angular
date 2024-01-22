@@ -8,16 +8,10 @@ import { CourseInterface } from 'src/app/interfaces/course';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseListItemComponent {
-  
+
   @Input() course!: CourseInterface
   @Output() edit = new EventEmitter<CourseInterface>()
   @Output() delete = new EventEmitter<number>()
-
-  public convertDuration(value: number) {
-    let hours = Math.floor(value/60)
-    let minutes = Math.round(((value/60) - Math.floor(value/60))*60)
-    return `${hours} часа ${minutes} минут`
-  }
 
   public onEdit(course: CourseInterface) {
     this.edit.emit(course)
