@@ -13,6 +13,7 @@ import { CourseBorderDirective } from 'src/app/directives/course-border.directiv
 import { DurationPipe } from 'src/app/pipes/duration.pipe';
 import { OrderByPipe } from 'src/app/pipes/order-by.pipe';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
+import { CourseEditComponent } from './components/course-edit/course-edit.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
     CourseActionsComponent,
     DurationPipe,
     CourseBorderDirective,
-    OrderByPipe
+    OrderByPipe,
+    CourseEditComponent
   ],
   imports: [
     CommonModule,
