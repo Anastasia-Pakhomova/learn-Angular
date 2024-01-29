@@ -14,9 +14,8 @@ export class CourseListComponent implements OnInit {
     console.log('Load more')
   }
 
-  public handleEdit(id: number) {
-   let courseforEdit = this.courses.find(item => item.id === id)
-   console.log('course for edit', courseforEdit)
+  public handleEdit(course: CourseInterface) {
+   console.log('course for edit', course)
   }
 
   public handleDelete(id: number) {

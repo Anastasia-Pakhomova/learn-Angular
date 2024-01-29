@@ -9,7 +9,7 @@ import { CourseInterface } from 'src/app/interfaces/course';
 export class CourseListItemComponent {
   
   @Input() course!: CourseInterface
-  @Output() edit = new EventEmitter<number>()
+  @Output() edit = new EventEmitter<CourseInterface>()
   @Output() delete = new EventEmitter<number>()
 
   public convertDuration(value: number) {
@@ -18,8 +18,8 @@ export class CourseListItemComponent {
     return `${hours} часа ${minutes} минут`
   }
 
-  public onEdit(id: number) {
-    this.edit.emit(id)
+  public onEdit(course: CourseInterface) {
+    this.edit.emit(course)
   }
 
   public onDelete(id: number) {
