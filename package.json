@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "concurrently --kill-others \"npm run server\" \"npm run start:proxy\" ",
     "build": "ng build",
+    "start:proxy": "ng serve --proxy-config proxy.conf.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "server": "json-server --watch db.json"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +21,8 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "concurrently": "^8.2.2",
+    "json-server": "^1.0.0-alpha.23",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primeng": "^15.0.0",
