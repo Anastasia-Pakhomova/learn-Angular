@@ -13,15 +13,14 @@
 
 .serach-field {
     border-radius: 4px;
-    width: 360px;
-    height: 48px;
+    width: 22.5rem;
+    height: 3rem;
     border: 1px solid var(--gray-200);
     padding: 12px 12px 12px 38px;
     &:focus, &:active {
         border: 1px solid var(--cyan-600);
         outline: none;
     } 
-
 }
 
 .serach-btn {
@@ -30,7 +29,7 @@
     background-color: var(--cyan-600);
     color: #ffffff;
     border: 1px solid var(--cyan-600);
-    height: 48px;
+    height: 3rem;
     outline: none;
     box-shadow: none;
     &:hover {
