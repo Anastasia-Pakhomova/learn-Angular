@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent {
-
+  public list = [
+    {
+      icon: 'pi pi-home',
+      text: 'Курсы'
+    },
+    {
+      text: 'Item2'
+    }
+  ]
 }

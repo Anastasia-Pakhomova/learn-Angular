@@ -1,1 +1,5 @@
-<p>search works!</p>
+<div class="flex align-items-center gap-3 p-input-icon-left">
+    <i class="pi pi-search" style="color: var(--cyan-800)"></i>
+    <input [(ngModel)]="searchValue" type="text" placeholder="Поиск" class="serach-field"/>
+    <button type="button" class="serach-btn" (click)="onSearch()">Поиск</button>
+</div>

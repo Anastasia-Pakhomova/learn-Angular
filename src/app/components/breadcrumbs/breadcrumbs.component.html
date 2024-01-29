@@ -1,1 +1,11 @@
-<p>breadcrumbs works!</p>
+<div class="px-0 py-1 card breadcrumbs">
+    <ul class="flex breadcrumbs-list">
+        <li *ngFor="let item of list; last as isLast; count as length" class="item">
+        <a href="/" class="item-link flex align-items-center gap-2">
+            <i *ngIf="item.icon" [class]="item.icon" style="font-size: 1rem; color: var(--cyan-800)"></i>
+            <p>{{item.text}}</p>
+            <i *ngIf="length > 1 && !isLast" class="pi pi-angle-right" style="font-size: 1rem; color: var(--cyan-800)"></i>
+        </a>
+        </li>
+    </ul>
+</div>
