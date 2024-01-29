@@ -19,7 +19,7 @@ export class CoursesPageComponent implements OnInit, DoCheck {
   constructor(
     private filterPipe: FilterPipe,
     private coursesService: CoursesService,
-    private confirmationService: ConfirmationService, 
+    private confirmationService: ConfirmationService,
     private messageService: MessageService
     ) {}
 
@@ -55,12 +55,11 @@ export class CoursesPageComponent implements OnInit, DoCheck {
   public handleRemove(id: number) {
     this.confirm(id)
   }
- 
-   public handleUpdate(id: number) {
-    let courseforEdit = this.filteredCourses.find(item => item.id === id)
-    console.log('course for edit pAGE', courseforEdit)
+
+   public handleUpdate(course: CourseInterface) {
+    console.log('course for edit', course)
     this.courseEditFlag = true
-  } 
+  }
 
   ngOnInit(): void {
     this.courseList = this.coursesService.getList()
