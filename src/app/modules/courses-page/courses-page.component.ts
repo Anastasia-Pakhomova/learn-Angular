@@ -55,9 +55,8 @@ export class CoursesPageComponent implements OnInit, DoCheck {
     this.confirm(id)
   }
 
-   public handleUpdate(id: number) {
-    const courseForEdit = this.filteredCourses.find(item => item.id === id)
-    console.log('course for edit', courseForEdit)
+   public handleUpdate(course: CourseInterface) {
+    console.log('course for edit', course)
   }
 
   ngOnInit(): void {
