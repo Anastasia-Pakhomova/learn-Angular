@@ -16,8 +16,8 @@ import { CourseEditComponent } from './components/course-edit/course-edit.compon
 import { CourseEditDurationComponent } from './components/course-edit-duration/course-edit-duration.component';
 import { CourseEditAuthorsComponent } from './components/course-edit-authors/course-edit-authors.component';
 import {DurationPipe} from "../../pipes/duration.pipe";
-import {FilterPipe} from "../../pipes/filter.pipe";
 import {OrderByPipe} from "../../pipes/order-by.pipe";
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -40,11 +40,13 @@ import {OrderByPipe} from "../../pipes/order-by.pipe";
     ToastModule,
     CalendarModule,
     InputNumberModule,
+    RouterModule,
     DurationPipe,
     OrderByPipe
   ],
   exports: [
-    CoursesPageComponent
+    CoursesPageComponent,
+    BreadcrumbsComponent
   ],
   providers: []
 })
