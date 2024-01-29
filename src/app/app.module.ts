@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import '@angular/common/locales/global/ru';
 import { LoginPageModule } from './modules/login-page/login-page.module';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -18,9 +19,10 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule, 
+    CoreModule,
     CoursesPageModule,
     LoginPageModule,
     FormsModule
