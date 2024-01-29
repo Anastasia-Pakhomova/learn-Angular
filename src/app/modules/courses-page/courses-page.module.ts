@@ -18,12 +18,13 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CourseEditComponent } from './components/course-edit/course-edit.component';
 import { CourseEditDurationComponent } from './components/course-edit-duration/course-edit-duration.component';
 import { CourseEditAuthorsComponent } from './components/course-edit-authors/course-edit-authors.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     CoursesPageComponent,
-    BreadcrumbsComponent,
+     BreadcrumbsComponent,
     CourseListComponent,
     CourseListItemComponent,
     CourseActionsComponent,
@@ -41,10 +42,12 @@ import { CourseEditAuthorsComponent } from './components/course-edit-authors/cou
     ConfirmDialogModule,
     ToastModule,
     CalendarModule,
-    InputNumberModule  
+    InputNumberModule, 
+    RouterModule  
   ],
   exports: [
-    CoursesPageComponent
+    CoursesPageComponent,
+    BreadcrumbsComponent
   ],
   providers: [FilterPipe]
 })

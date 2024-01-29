@@ -17,14 +17,18 @@ export class CoursesService {
     return this.courses
   }
 
-  public createCourse() {}
+  public createCourse() {
+    console.log('CREATE course')
+  }
 
   public getCourse(id: number) {
     let course = this.courses.find(item => item.id === id)
+    return course
   }
 
   public updateCourse(id: number) {
     let course = this.courses.find(item => item.id === id)
+    console.log('UPDATE course')
   }
 
   public removeCourse(id: number): CourseInterface[] {

@@ -1,4 +1,4 @@
-import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
@@ -14,13 +14,12 @@ export class CoursesPageComponent implements OnInit, DoCheck {
   public courseList: CourseInterface[] = []
   public searchCourse: any;
   public filteredCourses: CourseInterface[] = []
-  public courseEditFlag: boolean = false
 
   constructor(
     private filterPipe: FilterPipe,
     private coursesService: CoursesService,
     private confirmationService: ConfirmationService, 
-    private messageService: MessageService
+    private messageService: MessageService,
     ) {}
 
   filterCourses(text: string) {
@@ -59,7 +58,6 @@ export class CoursesPageComponent implements OnInit, DoCheck {
    public handleUpdate(id: number) {
     let courseforEdit = this.filteredCourses.find(item => item.id === id)
     console.log('course for edit pAGE', courseforEdit)
-    this.courseEditFlag = true
   } 
 
   ngOnInit(): void {

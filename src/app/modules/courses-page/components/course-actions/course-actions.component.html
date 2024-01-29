@@ -4,7 +4,7 @@
         <input [(ngModel)]="searchValue" type="text" placeholder="Поиск" class="serach-field"/>
         <button type="button" class="serach-btn" (click)="onSearch()">Поиск</button>
     </div>
-    <button type="button" class="add-btn flex gap-2 align-items-center justify-content-center">
+    <button routerLink="/courses/new" type="button" class="add-btn flex gap-2 align-items-center justify-content-center">
         <i class="pi pi-plus"></i>
         <span>Добавить курс</span>
     </button>

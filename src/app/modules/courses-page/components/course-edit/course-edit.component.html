@@ -11,21 +11,21 @@
         class="field field_textarea"
         pInputTextarea
         autoResize="true"
-        [(ngModel)]="description"></textarea>
+        [(ngModel)]="courseDescription"></textarea>
     </div>
-    <app-course-edit-duration></app-course-edit-duration>
+    <app-course-edit-duration [duration]="courseDuration"></app-course-edit-duration>
     <div class="flex flex-column">
     <label class="label text-sm">Дата*</label>
     <p-calendar 
-    [(ngModel)]="date" 
+    [(ngModel)]="courseDate" 
     [showIcon]="true"></p-calendar>
     </div>
     <app-course-edit-authors></app-course-edit-authors>
     <div class="flex gap-2">
-        <button (click)="cancel()" type="button" class="btn btn_cancel">
+        <button routerLink="/courses" type="button" class="btn btn_cancel">
         Отмена
         </button>
-        <button (click)="save()" type="button" class="btn btn_save">
+        <button routerLink="/courses" (click)="save()" type="button" class="btn btn_save">
         Сохранить
         </button>
     </div>
