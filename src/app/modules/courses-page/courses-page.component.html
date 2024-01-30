@@ -1,6 +1,6 @@
 <div class="flex flex-column gap-4 courses-page">
     <app-breadcrumbs></app-breadcrumbs>
-    <app-course-actions [(searchValue)]="searchCourse"></app-course-actions>
+    <app-course-actions [(searchValue)]="searchCourse" (searchValueChange)="filterCourses($event)"></app-course-actions>
     <p-toast></p-toast>
     <p-confirmDialog>
         <ng-template pTemplate="message" let-message>

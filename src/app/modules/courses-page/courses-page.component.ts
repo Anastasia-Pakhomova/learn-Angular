@@ -10,7 +10,7 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   styleUrls: ['./courses-page.component.scss'],
   providers: [ConfirmationService, MessageService]
 })
-export class CoursesPageComponent implements OnInit, DoCheck {
+export class CoursesPageComponent implements OnInit {
   public courseList: CourseInterface[] = []
   public searchCourse: any;
   public filteredCourses: CourseInterface[] = []
@@ -22,8 +22,11 @@ export class CoursesPageComponent implements OnInit, DoCheck {
     private messageService: MessageService
     ) {}
 
-  filterCourses(text: string) {
-    return this.filterPipe.transform(this.courseList, text);
+  filterCourses(text: any) {
+    //return this.filterPipe.transform(this.courseList, text);
+    if(typeof this.searchCourse === 'string') {
+      this.filteredCourses =this.filterPipe.transform(this.courseList, this.searchCourse)
+    }
   }
 
   resetFilter() {
@@ -64,9 +67,9 @@ export class CoursesPageComponent implements OnInit, DoCheck {
     this.filteredCourses = this.courseList
   }
 
-  ngDoCheck(): void {
-    if(typeof this.searchCourse === 'string') {
-      this.filteredCourses = this.filterCourses(this.searchCourse)
-    }
-  }
+  // ngDoCheck(): void {
+  //   if(typeof this.searchCourse === 'string') {
+  //     this.filteredCourses = this.filterCourses(this.searchCourse)
+  //   }
+  // }
 }
