@@ -1,0 +1,27 @@
+.reset-btn {
+    padding: 12px 18px;
+    border-radius: 4px;
+    background-color: var(--cyan-600);
+    color: #ffffff;
+    border: 1px solid var(--cyan-600);
+    height: 48px;
+    outline: none;
+    box-shadow: none;
+    &:hover {
+        background-color: var(--cyan-500);
+    }
+}
+
+.no-data {
+    background-color: #ffffff;
+    &_text{
+        font-size: 24px;
+        font-weight: 500;
+    } 
+    &_icon {
+        width: 168px;
+        height: 168px;
+        border-radius: 50%;
+        background-color: var(--cyan-100);
+    }
+}
