@@ -1,4 +1,4 @@
-import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
@@ -23,7 +23,6 @@ export class CoursesPageComponent implements OnInit {
     ) {}
 
   filterCourses(text: any) {
-    //return this.filterPipe.transform(this.courseList, text);
     if(typeof this.searchCourse === 'string') {
       this.filteredCourses =this.filterPipe.transform(this.courseList, this.searchCourse)
     }
@@ -67,9 +66,4 @@ export class CoursesPageComponent implements OnInit {
     this.filteredCourses = this.courseList
   }
 
-  // ngDoCheck(): void {
-  //   if(typeof this.searchCourse === 'string') {
-  //     this.filteredCourses = this.filterCourses(this.searchCourse)
-  //   }
-  // }
 }
