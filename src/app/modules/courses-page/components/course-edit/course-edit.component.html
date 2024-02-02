@@ -13,7 +13,7 @@
         autoResize="true"
         [(ngModel)]="courseDescription"></textarea>
     </div>
-    <app-course-edit-duration [duration]="courseDuration"></app-course-edit-duration>
+    <app-course-edit-duration [(duration)]="courseDuration" (durationChange)="getDuration($event)"></app-course-edit-duration>
     <div class="flex flex-column">
     <label class="label text-sm">Дата*</label>
     <p-calendar 

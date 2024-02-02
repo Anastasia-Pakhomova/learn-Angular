@@ -3,6 +3,7 @@
     <label class="label text-sm" htmlFor="duration">Продожительность*</label>
     <p-inputNumber 
     [(ngModel)]="duration" 
+    (onBlur)="handleChange()"
     mode="decimal" 
     inputId="duration" 
     [useGrouping]="false"

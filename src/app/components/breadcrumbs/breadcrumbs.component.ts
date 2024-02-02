@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { IBreadcrumbsItems } from 'src/app/interfaces/course';
+import { CourseInterface, IBreadcrumbsItems } from 'src/app/interfaces/course';
 import { CoursesService } from 'src/app/services/courses/courses.service';
 
 @Component({
@@ -23,8 +23,12 @@ export class BreadcrumbsComponent implements OnInit {
       if(route.length) {
         if(route === 'new') this.list.push({text: 'Новый курс'})
         else {
-          let course = this.coursesService.getCourse(+route)
-          this.list.push({text: course?.title ?? ''})
+          let course: CourseInterface
+          this.coursesService.getCourse(+route)
+          .subscribe((data: CourseInterface[]) => {
+            course = data[0]
+            this.list.push({text: course?.title ?? ''})
+          })
         }
       }
       else {

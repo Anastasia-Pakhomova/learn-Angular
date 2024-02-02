@@ -1,5 +1,6 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses/courses.service';
@@ -10,10 +11,15 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   styleUrls: ['./courses-page.component.scss'],
   providers: [ConfirmationService, MessageService]
 })
-export class CoursesPageComponent implements OnInit, DoCheck {
+export class CoursesPageComponent implements OnInit {
   public courseList: CourseInterface[] = []
   public searchCourse: any;
   public filteredCourses: CourseInterface[] = []
+
+  // private refresh$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
+  // public list$: Observable<CourseInterface[]> = this.refresh$.pipe(
+  //   switchMap(() => this.coursesService.getList())
+  // );
 
   constructor(
     private filterPipe: FilterPipe,
@@ -22,9 +28,11 @@ export class CoursesPageComponent implements OnInit, DoCheck {
     private messageService: MessageService,
     ) {}
 
-  filterCourses(text: string) {
-    return this.filterPipe.transform(this.courseList, text);
-  }
+    filterCourses(text: any) {
+      if(typeof this.searchCourse === 'string') {
+        this.filteredCourses = this.filterPipe.transform(this.courseList, this.searchCourse)
+      }
+    }
 
   resetFilter() {
     this.searchCourse=''
@@ -41,9 +49,9 @@ export class CoursesPageComponent implements OnInit, DoCheck {
         rejectButtonStyleClass: 'p-button-sm p-button-text',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
-            this.coursesService.removeCourse(id)
-            this.filteredCourses = this.filteredCourses.filter(item => item.id !== id)
+            this.coursesService.removeCourse(id).subscribe(response => this.getCourseList())
             this.messageService.add({ severity: 'success', summary: 'Курс удален', detail: 'Вы подтвердили удаление курса', life: 3000 });
+            
         },
         reject: () => {
             this.messageService.add({ severity: 'info', summary: 'Отмена удаления', detail: 'Вы отменили удаление курса', life: 3000 });
@@ -59,14 +67,24 @@ export class CoursesPageComponent implements OnInit, DoCheck {
     console.log('course for edit', course)
   }
 
-  ngOnInit(): void {
-    this.courseList = this.coursesService.getList()
-    this.filteredCourses = this.courseList
+   getCourseList() {
+    this.coursesService.getList()
+    .subscribe(data => {
+      this.courseList = data.map((item: CourseInterface) => {
+       return {...item, dateCreation: new Date(item.dateCreation)}
+      } )
+      this.filteredCourses = this.courseList
+    })
+      // this.list$.subscribe(data => {
+      //   this.courseList = data.map((item: CourseInterface) => {
+      //          return {...item, dateCreation: new Date(item.dateCreation)}
+      //         } )
+      //         this.filteredCourses = this.courseList
+      // })
   }
 
-  ngDoCheck(): void {
-    if(typeof this.searchCourse === 'string') {
-      this.filteredCourses = this.filterCourses(this.searchCourse)
-    }
+  ngOnInit(): void {
+    this.getCourseList() 
   }
+
 }

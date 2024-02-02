@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-edit-duration',
@@ -8,4 +8,9 @@ import { ChangeDetectionStrategy, Component, Input, Output } from '@angular/core
 })
 export class CourseEditDurationComponent {
   @Input() duration: number = 0
+  @Output() durationChange = new EventEmitter<number>();
+
+  handleChange() {
+    this.durationChange.emit(this.duration);
+  }
 }

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { CourseInterface } from 'src/app/interfaces/course';
 import { CoursesService } from 'src/app/services/courses/courses.service';
 
 @Component({
@@ -9,37 +10,51 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseEditComponent implements OnInit {
-  public title: string = 'Редактирование курса'
-  @Input() courseName =''
-  @Input() courseDescription =''
-  @Input() courseDate: Date = new Date()
+  public title: string = ''
+  public courseName =''
+  public courseDescription =''
+  public courseDate: Date = new Date()
   public courseDuration: number = 0
   private route: string =''
-  private routeMain: string =''
 
-  constructor(private coursesService: CoursesService, private router: Router) {}
+  constructor(private coursesService: CoursesService, private router: Router, private changeDetectorRef: ChangeDetectorRef,) {}
+ 
+  getDuration(duration: number) {
+    this.courseDuration = duration
+  }
 
-  
-  public save() {
+   public save() {
     if(this.route) {
-      if(this.route === 'new') this.coursesService.createCourse()
-      else this.coursesService.updateCourse(+this.route)
+      const newCourse = {
+        id: new Date().getTime(),
+        title: this.courseName,
+        dateCreation: this.courseDate,
+        duration: this.courseDuration,
+        description: this.courseDescription,
+        topRated: false
+      }
+      if(this.route === 'new') this.coursesService.createCourse(newCourse).subscribe(response => console.log(response))
+      else this.coursesService.updateCourse(+this.route, newCourse).subscribe(response => console.log(response))
+    
     }
   }
 
-  getCourseInfo(url: string[]): void {
+  getCourseInfo(url: string): void {
     if (url.length) {
-      [this.routeMain, this.route] = url.map((item: string) => item);
-      if(this.route) {
-        if(this.route === 'new') this.title = 'Новый курс'
-        else {
-          this.title = 'Редактирование курса'
-          let course = this.coursesService.getCourse(+this.route)
-          this.courseName = course?.title ?? ''
-          this.courseDescription = course?.description ?? ''
-          this.courseDate = course?.dateCreation ?? new Date()
-          this.courseDuration =course?.duration ?? 0 
-        }
+      if(this.route === 'new') this.title = 'Новый курс'
+      else {
+        this.title = 'Редактирование курса'
+        this.coursesService.getCourse(+this.route)
+        .subscribe((data: CourseInterface[]) => {
+          console.log("DATA", data)
+          const course = data[0]
+          this.courseName = course.title
+          this.courseDescription = course.description
+          this.courseDate =  new Date(course.dateCreation)
+          this.courseDuration = course.duration
+          this.getDuration(course.duration)
+          this.changeDetectorRef.detectChanges();
+        })
       }
     }
   }
@@ -47,6 +62,7 @@ export class CourseEditComponent implements OnInit {
   ngOnInit(): void {
       let urlArr = this.router.routerState.snapshot.url.split('/')
       urlArr.shift()
-      this.getCourseInfo(urlArr)
+      this.route = urlArr[1]
+      this.getCourseInfo(urlArr[1])
   }
 }
