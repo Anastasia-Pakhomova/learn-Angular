@@ -1,0 +1,28 @@
+<div class="flex flex-column gap-4 courses-page">
+    <app-breadcrumbs></app-breadcrumbs>
+    <app-course-actions [(searchValue)]="searchCourse" (searchValueChange)="filterCourses($event)"></app-course-actions>
+    <p-toast></p-toast>
+    <p-confirmDialog>
+        <ng-template pTemplate="message" let-message>
+            <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+                <p>{{ message.message }}</p>
+            </div>
+        </ng-template>
+    </p-confirmDialog>
+    <app-course-list 
+    *ngIf="filteredCourses.length > 0" 
+    [courses]="filteredCourses"
+    (editCourse)="handleUpdate($event)" 
+    (deleteCourse)="handleRemove($event)" 
+    >
+    </app-course-list>
+    <div class="card p-4 flex flex-column align-items-center gap-3 no-data" *ngIf="filteredCourses.length === 0">
+        <div class="no-data_icon flex justify-content-center align-items-center">
+            <i class="pi pi-ban" style="color: var(--cyan-800); font-size: 3.4rem;"></i>
+        </div>
+        <p class="no-data_text">Ничего не найдено</p>
+        <button (click)="resetFilter()" type="button" class="reset-btn">
+        Сбросить фильтры
+        </button>
+    </div>
+</div>

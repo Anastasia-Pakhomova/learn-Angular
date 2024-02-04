@@ -25,3 +25,7 @@
         background-color: var(--cyan-100);
     }
 }
+
+:host ::ng-deep .p-dialog { 
+    width: 460px;
+}

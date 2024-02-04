@@ -1,0 +1,13 @@
+<div class="flex align-items-center gap-3 header-menu">
+    <div class="flex align-items-center gap-2">
+        <i class="pi pi-user" style="font-size: 0.9rem; color: var(--cyan-800)"></i>
+        <p>{{name}}</p>
+    </div>
+    <p-button 
+    class="flex align-items-center" 
+    styleClass="p-button-text"
+    (click)="onLogout()">
+        <i class="pi pi-sign-out" style="font-size: 0.9rem; color: var(--cyan-800)"></i>
+        <span class="sign-out-text">Выход</span>
+    </p-button>
+</div>
