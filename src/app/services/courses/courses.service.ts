@@ -3,18 +3,15 @@ import { CourseInterface } from 'src/app/interfaces/course';
 import { coursesData } from './data';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {FilterPipe} from "../../pipes/filter.pipe";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
    private baseUrl = "http://localhost:3000"
-   private courses: CourseInterface[] = []
-   private courseList: CourseInterface[] = []
 
-  constructor(private httpClient: HttpClient) {
-    this.courses = coursesData
-  }
+  constructor(private httpClient: HttpClient, private filterPipe: FilterPipe,) {}
 
   public getList(): Observable<CourseInterface[]> {
     console.log('GET all courses')
@@ -42,4 +39,15 @@ export class CoursesService {
     console.log('DELETE id course', id)
     return this.httpClient.delete(`${this.baseUrl}/courses/${id}`)
   }
+
+  public searchCourses(courses: CourseInterface[], text: string): CourseInterface[] {
+    return this.filterPipe.transform(courses, text.trim())
+    // return this.httpClient.get<CourseInterface[]>(`${this.baseUrl}/courses`,
+    //   {
+    //     params: new HttpParams()
+    //       .set('title', text)
+    //       .set('description', text)
+    //   })
+  }
 }
+

@@ -12,6 +12,7 @@ export class FilterPipe implements PipeTransform {
     if(filterText.length>0) {
       courseList.forEach(item => {
         if ((item.title.toLowerCase()).includes(filterText.toLowerCase()) ) filteredCourses.push(item)
+        else if((item.description.toLowerCase()).includes(filterText.toLowerCase()) ) filteredCourses.push(item)
       })
       return filteredCourses;
     }

@@ -10,12 +10,14 @@ import '@angular/common/locales/global/ru';
 import { LoginPageModule } from './modules/login-page/login-page.module';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import {FilterPipe} from "./pipes/filter.pipe";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,7 @@ import {HttpClientModule} from "@angular/common/http";
     LoginPageModule,
     FormsModule
   ],
-  providers: [],
+  providers: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
