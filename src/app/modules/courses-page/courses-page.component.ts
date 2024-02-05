@@ -8,7 +8,7 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService, FilterPipe],
 })
 export class CoursesPageComponent implements OnInit {
   public courseList: CourseInterface[] = []

@@ -1,14 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'duration'
+  name: 'duration',
+  standalone: true
 })
 export class DurationPipe implements PipeTransform {
 
   transform(courseDuration: number): string {
-    if(courseDuration<=59) return `${courseDuration} минут` 
-    let hours = Math.floor(courseDuration/60)
-    let minutes = Math.round(((courseDuration/60) - Math.floor(courseDuration/60))*60)
+    if(courseDuration<=59) return `${courseDuration} минут`
+    const hours = Math.floor(courseDuration/60)
+    const minutes = Math.round(((courseDuration/60) - Math.floor(courseDuration/60))*60)
     function getNoun(number: number) {
       let n = Math.abs(number);
       n %= 100;
