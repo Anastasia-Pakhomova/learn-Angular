@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CourseInterface } from 'src/app/interfaces/course';
-import { coursesData } from './data';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FilterPipe} from "../../pipes/filter.pipe";
@@ -13,9 +12,16 @@ export class CoursesService {
 
   constructor(private httpClient: HttpClient, private filterPipe: FilterPipe,) {}
 
-  public getList(): Observable<CourseInterface[]> {
+  public getList(limit= 5): Observable<CourseInterface[]> {
     console.log('GET all courses')
-    return this.httpClient.get<CourseInterface[]>(`${this.baseUrl}/courses`)
+    return this.httpClient.get<CourseInterface[]>(`${this.baseUrl}/courses`,
+      {
+        params: new HttpParams()
+          .set('_start', 0)
+          .set('_limit', limit)
+          .set('_sort', 'dateCreation')
+          .set('_order', 'desc')
+      })
   }
 
   public createCourse(course: CourseInterface): Observable<CourseInterface> {
@@ -23,9 +29,9 @@ export class CoursesService {
     return this.httpClient.post<CourseInterface>(`${this.baseUrl}/courses`, course)
   }
 
-  public getCourse(id: number): Observable<any> {
+  public getCourse(id: number): Observable<CourseInterface[]> {
     console.log('GET course')
-    return this.httpClient.get(`${this.baseUrl}/courses`, {
+    return this.httpClient.get<CourseInterface[]>(`${this.baseUrl}/courses`, {
         params: new HttpParams().set('id', id)
     });
   }
@@ -40,14 +46,15 @@ export class CoursesService {
     return this.httpClient.delete(`${this.baseUrl}/courses/${id}`)
   }
 
-  public searchCourses(courses: CourseInterface[], text: string): CourseInterface[] {
-    return this.filterPipe.transform(courses, text.trim())
-    // return this.httpClient.get<CourseInterface[]>(`${this.baseUrl}/courses`,
-    //   {
-    //     params: new HttpParams()
-    //       .set('title', text)
-    //       .set('description', text)
-    //   })
+  public searchCourses(text: string): Observable<CourseInterface[]> {
+    if(!text.trim().length) {
+      return this.getList()
+    }
+    return this.httpClient.get<CourseInterface[]>(`${this.baseUrl}/courses`,
+      {
+        params: new HttpParams()
+          .set('q', text.trim())
+      })
   }
 }
 

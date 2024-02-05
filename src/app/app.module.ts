@@ -17,7 +17,6 @@ import {FilterPipe} from "./pipes/filter.pipe";
   declarations: [
     AppComponent,
     NotFoundPageComponent,
-    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -27,7 +26,8 @@ import {FilterPipe} from "./pipes/filter.pipe";
     CoreModule,
     CoursesPageModule,
     LoginPageModule,
-    FormsModule
+    FormsModule,
+    FilterPipe
   ],
   providers: [FilterPipe],
   bootstrap: [AppComponent]

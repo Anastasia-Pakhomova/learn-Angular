@@ -8,12 +8,13 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService, FilterPipe]
 })
 export class CoursesPageComponent implements OnInit {
   public courseList: CourseInterface[] = []
   public searchCourse: any;
   public filteredCourses: CourseInterface[] = []
+  public limit = 5
 
   constructor(
     private filterPipe: FilterPipe,
@@ -22,14 +23,14 @@ export class CoursesPageComponent implements OnInit {
     private messageService: MessageService,
     ) {}
 
-    // filterCourses(text: any) {
-    //   if(typeof this.searchCourse === 'string') {
-    //     this.filteredCourses = this.filterPipe.transform(this.courseList, this.searchCourse)
-    //   }
-    // }
-
-  filterCourses(text: any) {
-    this.filteredCourses = this.coursesService.searchCourses(this.courseList, text)
+  filterCourses(text: string) {
+   this.coursesService.searchCourses(text)
+     .subscribe(data => {
+       this.courseList = data.map((item: CourseInterface) => {
+         return {...item, dateCreation: new Date(item.dateCreation)}
+       } )
+       this.filteredCourses = this.courseList
+     })
   }
 
   resetFilter() {
@@ -47,7 +48,7 @@ export class CoursesPageComponent implements OnInit {
         rejectButtonStyleClass: 'p-button-sm p-button-text',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
-            this.coursesService.removeCourse(id).subscribe(response => this.getCourseList())
+            this.coursesService.removeCourse(id).subscribe(response => this.getCourseList(this.limit))
             this.messageService.add({ severity: 'success', summary: 'Курс удален', detail: 'Вы подтвердили удаление курса', life: 3000 });
 
         },
@@ -65,8 +66,12 @@ export class CoursesPageComponent implements OnInit {
     console.log('course for edit', course)
   }
 
-   getCourseList() {
-    this.coursesService.getList()
+  public handleLoad(count: number) {
+    this.getCourseList(count)
+  }
+
+   getCourseList(limit: number) {
+    this.coursesService.getList(limit)
     .subscribe(data => {
       this.courseList = data.map((item: CourseInterface) => {
        return {...item, dateCreation: new Date(item.dateCreation)}
@@ -76,7 +81,7 @@ export class CoursesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCourseList()
+    this.getCourseList(this.limit)
   }
 
 }

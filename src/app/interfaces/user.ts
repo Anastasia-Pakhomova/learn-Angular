@@ -6,6 +6,10 @@ export interface UserInterface {
 
 export interface UserInfo {
     login: string
-    token: string 
+    token: string
     email: string
+}
+
+export interface SavedUserInfo extends UserInfo{
+  id: number
 }

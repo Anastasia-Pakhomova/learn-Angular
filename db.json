@@ -87,6 +87,30 @@
       "duration": 50,
       "description": "test about",
       "topRated": false
+    },
+    {
+      "id": 1707136612682,
+      "title": "ghfg",
+      "dateCreation": "2024-02-06T21:00:00.000Z",
+      "duration": 35,
+      "description": "test nnn",
+      "topRated": false
+    },
+    {
+      "id": 1707137772048,
+      "title": "test 03",
+      "dateCreation": "2024-02-12T21:00:00.000Z",
+      "duration": 85,
+      "description": "kjk ljjlk",
+      "topRated": false
+    }
+  ],
+  "user": [
+    {
+      "login": "pakhomova",
+      "token": "kjkjkjkkj45455gg",
+      "email": "pakhomova@kraud.ru",
+      "id": 1
     }
   ]
 }

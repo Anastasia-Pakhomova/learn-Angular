@@ -1,6 +1,7 @@
 import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';
+import {SavedUserInfo} from "../../../../interfaces/user";
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,9 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements DoCheck {
-  public isUserAuthenticated: boolean = false
-  public userName: string = ''
+  public isUserAuthenticated = false
+  public userName = ''
+  private userInfo = {token: "", id: 0}
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -18,7 +20,8 @@ export class HeaderComponent implements DoCheck {
   }
 
   public handleLogout(name: string) {
-    this.authService.logout(name)
+    this.authService.logout(name, this.userInfo.id)
+      .subscribe(response => console.log(response))
     this.isUserAuthenticated = this.authService.isAuthenticated()
     this.router.navigate(['/login'])
   }
@@ -26,8 +29,17 @@ export class HeaderComponent implements DoCheck {
   ngDoCheck(): void {
     if(!this.isUserAuthenticated) {
       this.checkAuthenticated()
-      if(this.isUserAuthenticated) this.userName = this.authService.getUserInfo()
+      if(this.isUserAuthenticated) {
+        const user = localStorage.getItem('userInfo')
+         if(user !== null) {
+           this.userInfo = JSON.parse(user)
+           this.authService.getUserInfo(this.userInfo.token)
+             .subscribe((data: SavedUserInfo[]) => {
+               this.userName = data[0].login
+             })
+         }
+      }
     }
   }
-  
+
 }

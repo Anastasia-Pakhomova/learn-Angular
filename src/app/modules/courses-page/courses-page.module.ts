@@ -11,7 +11,7 @@ import { BreadcrumbsComponent } from 'src/app/components/breadcrumbs/breadcrumbs
 import { CourseListItemComponent } from './components/course-list-item/course-list-item.component';
 import { CourseActionsComponent } from './components/course-actions/course-actions.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
-import { CourseBorderDirective } from 'src/app/directives/course-border.directive';
+import { CourseBorderDirective } from './directives/course-border.directive';
 import { DurationPipe } from 'src/app/pipes/duration.pipe';
 import { OrderByPipe } from 'src/app/pipes/order-by.pipe';
 import { CourseEditComponent } from './components/course-edit/course-edit.component';
@@ -23,13 +23,11 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     CoursesPageComponent,
-     BreadcrumbsComponent,
+    BreadcrumbsComponent,
     CourseListComponent,
     CourseListItemComponent,
     CourseActionsComponent,
-    DurationPipe,
     CourseBorderDirective,
-    OrderByPipe,
     CourseEditComponent,
     CourseEditDurationComponent,
     CourseEditAuthorsComponent
@@ -42,7 +40,9 @@ import { RouterModule } from '@angular/router';
     ToastModule,
     CalendarModule,
     InputNumberModule,
-    RouterModule
+    RouterModule,
+    DurationPipe,
+    OrderByPipe,
   ],
   exports: [
     CoursesPageComponent,
