@@ -1,11 +1,12 @@
 <div class="px-0 py-1 card breadcrumbs">
     <ul class="flex breadcrumbs-list">
-        <li *ngFor="let item of list; last as isLast; count as length" class="item">
-        <a href="/" class="item-link flex align-items-center gap-2">
+        <li *ngFor="let item of list; last as isLast; count as length; first as isFirst" class="item">
+        <a *ngIf="isFirst" [href]="item.link" class="item-link flex align-items-center gap-2">
             <i *ngIf="item.icon" [class]="item.icon" style="font-size: 1rem; color: var(--cyan-800)"></i>
             <p>{{item.text}}</p>
             <i *ngIf="length > 1 && !isLast" class="pi pi-angle-right" style="font-size: 1rem; color: var(--cyan-800)"></i>
         </a>
+        <p *ngIf="!isFirst" class="item-link">{{item.text}}</p>
         </li>
     </ul>
 </div>

@@ -6,3 +6,9 @@ export interface CourseInterface {
     description: string
     topRated: boolean
 }
+
+export interface IBreadcrumbsItems {
+    icon?: string
+    text: string
+    link?: string 
+}

@@ -14,13 +14,12 @@ export class CoursesPageComponent implements OnInit, DoCheck {
   public courseList: CourseInterface[] = []
   public searchCourse: any;
   public filteredCourses: CourseInterface[] = []
-  public courseEditFlag: boolean = false
 
   constructor(
     private filterPipe: FilterPipe,
     private coursesService: CoursesService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
     ) {}
 
   filterCourses(text: string) {
@@ -58,7 +57,6 @@ export class CoursesPageComponent implements OnInit, DoCheck {
 
    public handleUpdate(course: CourseInterface) {
     console.log('course for edit', course)
-    this.courseEditFlag = true
   }
 
   ngOnInit(): void {

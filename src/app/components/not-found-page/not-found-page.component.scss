@@ -1,0 +1,35 @@
+.not-found {
+    background-color: #ffffff;
+    &_blue {
+        background-color: var(--cyan-100);
+        width: 195px;
+        height: 153px;
+        border-radius: 500px;
+    }
+    &_number {
+        color: var(--cyan-800); 
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 57px;
+    }
+    &_text {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 32px;
+    }
+}
+
+.btn_to-main {
+    padding: 12px 18px;
+    border-radius: 4px;
+    background-color: var(--cyan-600);
+    color: #ffffff;
+    border: 1px solid var(--cyan-600);
+    height: 48px;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--cyan-500);
+    }
+}
