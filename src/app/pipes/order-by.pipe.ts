@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { CourseInterface } from '../interfaces/course';
 
 @Pipe({
-  name: 'orderBy'
+  name: 'orderBy',
+  standalone: true
 })
 export class OrderByPipe implements PipeTransform {
 

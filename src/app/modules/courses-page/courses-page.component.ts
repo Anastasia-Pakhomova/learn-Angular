@@ -1,5 +1,5 @@
-import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses/courses.service';
@@ -8,7 +8,7 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService, FilterPipe],
 })
 export class CoursesPageComponent implements OnInit, DoCheck {
   public courseList: CourseInterface[] = []

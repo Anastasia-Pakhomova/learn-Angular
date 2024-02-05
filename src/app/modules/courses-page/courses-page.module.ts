@@ -11,13 +11,13 @@ import { BreadcrumbsComponent } from 'src/app/components/breadcrumbs/breadcrumbs
 import { CourseListItemComponent } from './components/course-list-item/course-list-item.component';
 import { CourseActionsComponent } from './components/course-actions/course-actions.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
-import { CourseBorderDirective } from 'src/app/directives/course-border.directive';
-import { DurationPipe } from 'src/app/pipes/duration.pipe';
-import { OrderByPipe } from 'src/app/pipes/order-by.pipe';
-import { FilterPipe } from 'src/app/pipes/filter.pipe';
+import { CourseBorderDirective } from './directives/course-border.directive';
 import { CourseEditComponent } from './components/course-edit/course-edit.component';
 import { CourseEditDurationComponent } from './components/course-edit-duration/course-edit-duration.component';
 import { CourseEditAuthorsComponent } from './components/course-edit-authors/course-edit-authors.component';
+import {DurationPipe} from "../../pipes/duration.pipe";
+import {FilterPipe} from "../../pipes/filter.pipe";
+import {OrderByPipe} from "../../pipes/order-by.pipe";
 
 
 @NgModule({
@@ -27,9 +27,7 @@ import { CourseEditAuthorsComponent } from './components/course-edit-authors/cou
     CourseListComponent,
     CourseListItemComponent,
     CourseActionsComponent,
-    DurationPipe,
     CourseBorderDirective,
-    OrderByPipe,
     CourseEditComponent,
     CourseEditDurationComponent,
     CourseEditAuthorsComponent
@@ -41,11 +39,13 @@ import { CourseEditAuthorsComponent } from './components/course-edit-authors/cou
     ConfirmDialogModule,
     ToastModule,
     CalendarModule,
-    InputNumberModule  
+    InputNumberModule,
+    DurationPipe,
+    OrderByPipe
   ],
   exports: [
     CoursesPageComponent
   ],
-  providers: [FilterPipe]
+  providers: []
 })
 export class CoursesPageModule { }
