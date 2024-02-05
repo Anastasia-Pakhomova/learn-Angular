@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses/courses.service';
@@ -8,12 +8,13 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService, FilterPipe],
 })
 export class CoursesPageComponent implements OnInit {
   public courseList: CourseInterface[] = []
   public searchCourse: any;
   public filteredCourses: CourseInterface[] = []
+  public courseEditFlag: boolean = false
 
   constructor(
     private filterPipe: FilterPipe,
@@ -43,8 +44,8 @@ export class CoursesPageComponent implements OnInit {
         rejectButtonStyleClass: 'p-button-sm p-button-text',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
-            this.filteredCourses = this.filteredCourses.filter(item => item.id !== id)
             this.coursesService.removeCourse(id)
+            this.filteredCourses = this.filteredCourses.filter(item => item.id !== id)
             this.messageService.add({ severity: 'success', summary: 'Курс удален', detail: 'Вы подтвердили удаление курса', life: 3000 });
         },
         reject: () => {
@@ -59,6 +60,7 @@ export class CoursesPageComponent implements OnInit {
 
    public handleUpdate(course: CourseInterface) {
     console.log('course for edit', course)
+     this.courseEditFlag = true
   }
 
   ngOnInit(): void {

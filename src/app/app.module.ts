@@ -18,7 +18,7 @@ import { LoginPageModule } from './modules/login-page/login-page.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule, 
+    CoreModule,
     CoursesPageModule,
     LoginPageModule,
     FormsModule

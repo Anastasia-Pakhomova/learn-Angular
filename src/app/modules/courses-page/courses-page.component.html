@@ -9,11 +9,11 @@
             </div>
         </ng-template>
     </p-confirmDialog>
-    <app-course-list 
-    *ngIf="filteredCourses.length > 0" 
+    <app-course-list
+    *ngIf="filteredCourses.length > 0"
     [courses]="filteredCourses"
-    (editCourse)="handleUpdate($event)" 
-    (deleteCourse)="handleRemove($event)" 
+    (editCourse)="handleUpdate($event)"
+    (deleteCourse)="handleRemove($event)"
     >
     </app-course-list>
     <div class="card p-4 flex flex-column align-items-center gap-3 no-data" *ngIf="filteredCourses.length === 0">
@@ -25,4 +25,5 @@
         Сбросить фильтры
         </button>
     </div>
+    <app-course-edit [(flag)]="courseEditFlag" *ngIf="courseEditFlag"></app-course-edit>
 </div>

@@ -1,0 +1,13 @@
+<div class="flex align-items-center wrapper">
+<div class="flex flex-column">
+    <label class="label text-sm" htmlFor="duration">Продожительность*</label>
+    <p-inputNumber 
+    [(ngModel)]="duration" 
+    mode="decimal" 
+    inputId="duration" 
+    [useGrouping]="false"
+    [showButtons]="true"
+    [min]="0"></p-inputNumber>
+</div>
+<span class="text-sm transform-time">{{duration | duration}}</span>
+</div>
