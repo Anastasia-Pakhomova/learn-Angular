@@ -9,8 +9,9 @@ import { FormsModule } from '@angular/forms';
 import '@angular/common/locales/global/ru';
 import { LoginPageModule } from './modules/login-page/login-page.module';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FilterPipe} from "./pipes/filter.pipe";
+import {TokenInterceptor} from "./interceptors/token.interceptor";
 
 
 @NgModule({
@@ -29,7 +30,14 @@ import {FilterPipe} from "./pipes/filter.pipe";
     FormsModule,
     FilterPipe
   ],
-  providers: [FilterPipe],
+  providers: [
+    FilterPipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

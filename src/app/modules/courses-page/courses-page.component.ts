@@ -35,6 +35,7 @@ export class CoursesPageComponent implements OnInit {
 
   resetFilter() {
     this.searchCourse=''
+    this.filterCourses('')
   }
 
   confirm(id: number) {
