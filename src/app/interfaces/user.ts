@@ -12,4 +12,5 @@ export interface UserInfo {
 
 export interface SavedUserInfo extends UserInfo{
   id: number
+  token: string
 }

@@ -1,6 +1,9 @@
 <div class="flex flex-column gap-4 courses-page">
     <div class="flex flex-column gap-4">
-        <app-course-actions [(searchValue)]="searchCourse" (searchValueChange)="filterCourses($event)"></app-course-actions>
+        <app-course-actions
+          [(searchValue)]="searchCourse"
+          (searchValueChange)="filterCourses($event)">
+        </app-course-actions>
         <p-toast></p-toast>
         <p-confirmDialog>
             <ng-template pTemplate="message" let-message>
@@ -10,15 +13,15 @@
             </ng-template>
         </p-confirmDialog>
         <app-course-list
-        *ngIf="filteredCourses.length > 0"
-        [courses]="filteredCourses"
+        *ngIf="(courses$ | async) && (courses$ | async)?.length !== 0"
+        [courses]="(courses$ | async) || []"
         (editCourse)="handleUpdate($event)"
         (deleteCourse)="handleRemove($event)"
-        [numberOfCourses] = "limit"
+
         (loadList)="handleLoad($event)"
         >
         </app-course-list>
-        <div class="card p-4 flex flex-column align-items-center gap-3 no-data" *ngIf="filteredCourses.length === 0">
+        <div class="card p-4 flex flex-column align-items-center gap-3 no-data" *ngIf="(courses$ | async)?.length === 0">
             <div class="no-data_icon flex justify-content-center align-items-center">
                 <i class="pi pi-ban" style="color: var(--cyan-800); font-size: 3.4rem;"></i>
             </div>

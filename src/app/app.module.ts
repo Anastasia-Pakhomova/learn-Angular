@@ -12,6 +12,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FilterPipe} from "./pipes/filter.pipe";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
+import {LoadingInterceptor} from "./interceptors/loading.interceptor";
 
 
 @NgModule({
@@ -36,6 +37,11 @@ import {TokenInterceptor} from "./interceptors/token.interceptor";
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

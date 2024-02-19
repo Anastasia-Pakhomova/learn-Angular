@@ -14,14 +14,16 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-      const isUserAuthenticated = this.authService.isAuthenticated()
-
-      if (isUserAuthenticated) {
-        const user = localStorage.getItem('userInfo')
-        const userInfo = user !== null ?  JSON.parse(user) : ''
-        const token = userInfo.token
-        if(token.length > 0) request = request.clone({setHeaders: { Authorization: token }});
-      }
+      let isUserAuthenticated: boolean
+      this.authService.getIsAuthenticated().subscribe((response: any)=> {
+        isUserAuthenticated=response
+        if (isUserAuthenticated) {
+          const user = localStorage.getItem('userInfo')
+          const userInfo = user !== null ?  JSON.parse(user) : ''
+          const token = userInfo.token
+          if(token.length > 0) request = request.clone({setHeaders: { Authorization: token }});
+        }
+      })
 
     return next.handle(request);
   }

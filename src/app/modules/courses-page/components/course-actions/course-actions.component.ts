@@ -6,7 +6,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./course-actions.component.scss']
 })
 export class CourseActionsComponent {
-  public searchCourse: any
   @Input() searchValue: string | undefined;
   @Output() searchValueChange = new EventEmitter<string>();
 

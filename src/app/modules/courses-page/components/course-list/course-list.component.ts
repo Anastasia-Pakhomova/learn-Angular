@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import { CourseInterface } from 'src/app/interfaces/course';
 
 @Component({
@@ -6,18 +6,17 @@ import { CourseInterface } from 'src/app/interfaces/course';
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss']
 })
-export class CourseListComponent {
+
+export class CourseListComponent implements OnChanges{
   @Input() courses: CourseInterface[] = []
-  @Input() numberOfCourses = 0
   public sortingField: keyof CourseInterface = 'dateCreation'
   @Output() editCourse = new EventEmitter<CourseInterface>()
   @Output() deleteCourse = new EventEmitter<number>()
   @Output() loadList = new EventEmitter<number>()
+  public courseList: CourseInterface[] = []
 
   public onLoad() {
-    this.numberOfCourses = this.numberOfCourses + 5
-    this.loadList.emit(this.numberOfCourses)
-    console.log('Load more')
+    this.loadList.emit(this.courseList.length + 5)
   }
 
   public handleEdit(course: CourseInterface) {
@@ -27,4 +26,11 @@ export class CourseListComponent {
   public handleDelete(id: number) {
     this.deleteCourse.emit(id)
   }
+
+  ngOnChanges(): void {
+  this.courseList = this.courses.map((item: CourseInterface) => {
+      return {...item, dateCreation: new Date(item.dateCreation)}
+    })
+  }
+
 }

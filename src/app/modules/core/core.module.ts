@@ -5,6 +5,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
 import { ButtonModule } from 'primeng/button';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 
@@ -13,15 +15,18 @@ import { ButtonModule } from 'primeng/button';
     HeaderComponent,
     LogoComponent,
     HeaderMenuComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
-    ButtonModule
+    ButtonModule,
+    ProgressSpinnerModule
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent
   ]
 })
 export class CoreModule { }
