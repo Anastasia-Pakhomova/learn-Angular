@@ -1,8 +1,8 @@
 <header class="flex align-items-center justify-content-between header">
     <app-logo></app-logo>
     <app-header-menu 
-    *ngIf="isUserAuthenticated" 
+    *ngIf="isUserAuthenticated | async" 
     (logout)="handleLogout($event)"
-    [name]="userName" 
+    [name]="(userName | async) || ''" 
     ></app-header-menu> 
 </header>

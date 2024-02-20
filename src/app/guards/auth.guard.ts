@@ -7,20 +7,14 @@ export const authGuard = (): Observable<boolean> => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.getIsAuthenticated()
+  return authService.isAuthenticated()
     .pipe(
     map(response => {
       if(!response) {
-        router.parseUrl('/login')
+        router.navigateByUrl('/login')
         return false
       }
       return true
     })
   )
-
-  // if (authService.getIsAuthenticated()) {
-  //   return true;
-  // }
-  //
-  // return router.parseUrl('/login');
 };

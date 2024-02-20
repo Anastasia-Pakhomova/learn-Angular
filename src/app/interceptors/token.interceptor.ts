@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
       let isUserAuthenticated: boolean
-      this.authService.getIsAuthenticated().subscribe((response: any)=> {
+      this.authService.isAuthenticated().subscribe((response: any)=> {
         isUserAuthenticated=response
         if (isUserAuthenticated) {
           const user = localStorage.getItem('userInfo')
