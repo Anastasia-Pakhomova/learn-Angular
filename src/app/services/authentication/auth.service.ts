@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {SavedUserInfo, UserInfo} from 'src/app/interfaces/user';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {map, Observable, of, Subject, switchMap, tap} from "rxjs";
+import {BehaviorSubject, map, Observable, Subject, switchMap, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private baseUrl = "http://localhost:3000"
- private _isAuthenticated = new Subject<boolean>()
-
+  private _isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
   public userName$: Subject<string> = new Subject<string>()
+  public token$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,10 +23,11 @@ export class AuthService {
           token: data.token
         }
         localStorage.setItem('userInfo', JSON.stringify(user))
-        this._isAuthenticated.next(true)
+        this._isAuthenticated$.next(true)
+        this.token$.next(data.token)
         return data.token
       }),
-      switchMap((token) => this.getUserInfo(token)),
+      switchMap(token => this.getUserInfo(token)),
       tap(res => this.userName$.next(res))
     )
   }
@@ -36,18 +37,14 @@ export class AuthService {
     return this.httpClient.delete(`${this.baseUrl}/user/${id}`).pipe(
       map(() => {
         localStorage.removeItem('userInfo')
-        this._isAuthenticated.next(false)
+        this._isAuthenticated$.next(false)
+        this.token$.next(null)
       })
     )
   }
 
-  public isAuthenticated () {
-    return of(!!localStorage.getItem('userInfo'))
-  }
-
-  public getIsAuthenticated() {
-    this._isAuthenticated.next(!!localStorage.getItem('userInfo'))
-    return this._isAuthenticated
+  get getIsAuthenticated(): Observable<boolean>  {
+    return this._isAuthenticated$.asObservable()
   }
 
   public getUserInfo (token: string): Observable<string> {
@@ -57,4 +54,5 @@ export class AuthService {
       map(data => data[0].login)
     )
   }
+
 }

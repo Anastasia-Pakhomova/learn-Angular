@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseEditDurationComponent {
-  @Input() duration: number = 0
+  @Input() duration = 0
   @Output() durationChange = new EventEmitter<number>();
 
   handleChange() {

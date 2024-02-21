@@ -56,7 +56,7 @@ export class CoursesPageComponent {
         rejectButtonStyleClass: 'p-button-sm p-button-text',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
-            this.coursesService.removeCourse(id).subscribe(response => this.refresh$.next(this.limit))
+            this.coursesService.removeCourse(id).subscribe(() => this.refresh$.next(this.limit))
             this.messageService.add({ severity: 'success', summary: 'Курс удален', detail: 'Вы подтвердили удаление курса', life: 3000 });
 
         },

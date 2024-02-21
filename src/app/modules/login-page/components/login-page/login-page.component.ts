@@ -21,21 +21,7 @@ export class LoginPageComponent implements OnInit {
           next: (result) => {
             if(result) this.router.navigateByUrl('/courses');
           }
-      }
-      //   data => {
-      //   console.log(data)
-      //   // const userInfo = {
-      //   //   id: data.id,
-      //   //   token: data.token
-      //   // }
-      //   //localStorage.setItem('userInfo', JSON.stringify(userInfo))
-      //   this.authService.getIsAuthenticated().subscribe((auth: any) => this.isAuthenticated = auth)
-      //   if(this.isAuthenticated) {
-      //     this.router.navigate(['/courses'])
-      //     console.log('Выполнен вход в систему')
-      //   }
-      // }
-      )
+      })
   }
 
   public submit() {
@@ -51,7 +37,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getIsAuthenticated().subscribe((auth: any) => this.isAuthenticated = auth)
+    this.authService.getIsAuthenticated.subscribe(auth => this.isAuthenticated = auth)
     if(this.isAuthenticated) this.router.navigate(['/courses'])
   }
 }
