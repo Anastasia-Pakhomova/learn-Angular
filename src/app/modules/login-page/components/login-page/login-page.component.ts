@@ -29,8 +29,9 @@ export class LoginPageComponent implements OnInit {
       const emailParts = this.email.split('@')
       const user = {
         login: emailParts[0],
-        token: this.password,
-        email: this.email
+        token: this.password+emailParts[0],
+        email: this.email,
+        password: this.password
       };
       this.login(user)
     }

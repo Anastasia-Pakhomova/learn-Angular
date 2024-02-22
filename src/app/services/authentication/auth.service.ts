@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {SavedUserInfo, UserInfo} from 'src/app/interfaces/user';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {BehaviorSubject, map, Observable, Subject, switchMap, tap} from "rxjs";
+import {environment} from "src/environments/environment.development"
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = "http://localhost:3000"
+  private baseUrl = environment.apiUrl
   private _isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
   public userName$: Subject<string> = new Subject<string>()
   public token$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);

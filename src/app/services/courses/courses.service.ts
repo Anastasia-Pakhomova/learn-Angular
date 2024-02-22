@@ -3,12 +3,13 @@ import { CourseInterface } from 'src/app/interfaces/course';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FilterPipe} from "../../pipes/filter.pipe";
+import {environment} from "src/environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-   private baseUrl = "http://localhost:3000"
+   private baseUrl = environment.apiUrl
 
   constructor(private httpClient: HttpClient, private filterPipe: FilterPipe,) {}
 
