@@ -15,24 +15,12 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  checkAuthenticated() {
-    this.isAuthenticated = this.authService.isAuthenticated()
-  }
-
   public login(user: UserInfo) {
     this.authService.login(user)
-      .subscribe(data => {
-        console.log(data)
-        const userInfo = {
-          id: data.id,
-          token: data.token
-        }
-        localStorage.setItem('userInfo', JSON.stringify(userInfo))
-        this.checkAuthenticated()
-        if(this.isAuthenticated) {
-          this.router.navigate(['/courses'])
-          console.log('Выполнен вход в систему')
-        }
+      .subscribe({
+          next: (result) => {
+            if(result) this.router.navigateByUrl('/courses');
+          }
       })
   }
 
@@ -41,15 +29,16 @@ export class LoginPageComponent implements OnInit {
       const emailParts = this.email.split('@')
       const user = {
         login: emailParts[0],
-        token: this.password,
-        email: this.email
+        token: this.password+emailParts[0],
+        email: this.email,
+        password: this.password
       };
       this.login(user)
     }
   }
 
   ngOnInit(): void {
-    this.checkAuthenticated()
+    this.authService.getIsAuthenticated.subscribe(auth => this.isAuthenticated = auth)
     if(this.isAuthenticated) this.router.navigate(['/courses'])
   }
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses/courses.service';
+import {BehaviorSubject, debounceTime, filter, merge, Observable, of, Subject, switchMap, tap} from "rxjs";
 
 @Component({
   selector: 'app-courses-page',
@@ -10,11 +11,16 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
   styleUrls: ['./courses-page.component.scss'],
   providers: [ConfirmationService, MessageService, FilterPipe]
 })
-export class CoursesPageComponent implements OnInit {
-  public courseList: CourseInterface[] = []
+export class CoursesPageComponent {
   public searchCourse: any;
-  public filteredCourses: CourseInterface[] = []
   public limit = 5
+
+  private refresh$: BehaviorSubject<number> = new BehaviorSubject<number>(5);
+  private search$: Subject<CourseInterface[]> = new Subject<CourseInterface[]>();
+  public courses$: Observable<CourseInterface[]> = merge(
+    this.refresh$.pipe(switchMap((limit) =>  this.coursesService.getList(limit))),
+    this.search$
+  );
 
   constructor(
     private filterPipe: FilterPipe,
@@ -24,13 +30,14 @@ export class CoursesPageComponent implements OnInit {
     ) {}
 
   filterCourses(text: string) {
-   this.coursesService.searchCourses(text)
-     .subscribe(data => {
-       this.courseList = data.map((item: CourseInterface) => {
-         return {...item, dateCreation: new Date(item.dateCreation)}
-       } )
-       this.filteredCourses = this.courseList
-     })
+    if(text.trim().length === 0) this.refresh$.next(this.limit)
+    of(text).pipe(
+      filter(text => !!text && text.length>=3),
+      debounceTime(250),
+      switchMap(text => this.coursesService.searchCourses(text).pipe(
+        tap(courses => this.search$.next(courses))
+      ))
+    ).subscribe()
   }
 
   resetFilter() {
@@ -49,7 +56,7 @@ export class CoursesPageComponent implements OnInit {
         rejectButtonStyleClass: 'p-button-sm p-button-text',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
-            this.coursesService.removeCourse(id).subscribe(response => this.getCourseList(this.limit))
+            this.coursesService.removeCourse(id).subscribe(() => this.refresh$.next(this.limit))
             this.messageService.add({ severity: 'success', summary: 'Курс удален', detail: 'Вы подтвердили удаление курса', life: 3000 });
 
         },
@@ -68,21 +75,7 @@ export class CoursesPageComponent implements OnInit {
   }
 
   public handleLoad(count: number) {
-    this.getCourseList(count)
-  }
-
-   getCourseList(limit: number) {
-    this.coursesService.getList(limit)
-    .subscribe(data => {
-      this.courseList = data.map((item: CourseInterface) => {
-       return {...item, dateCreation: new Date(item.dateCreation)}
-      } )
-      this.filteredCourses = this.courseList
-    })
-  }
-
-  ngOnInit(): void {
-    this.getCourseList(this.limit)
+    this.refresh$.next(count)
   }
 
 }

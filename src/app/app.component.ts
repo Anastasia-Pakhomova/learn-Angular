@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -7,18 +8,23 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
+  subscription = new Subscription()
   public isCoursePage = false
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.router.events.subscribe(events => {
+    this.subscription = this.router.events.subscribe(events => {
       if (events instanceof NavigationEnd) {
         if(events.url.includes('courses')) this.isCoursePage = true
         else this.isCoursePage = false
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 }

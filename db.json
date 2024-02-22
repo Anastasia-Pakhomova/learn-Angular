@@ -111,20 +111,25 @@
       "duration": 120,
       "description": "gkgk kjgkjgkj",
       "topRated": false
+    },
+    {
+      "id": 1708506201426,
+      "title": "new",
+      "dateCreation": "2024-02-26T21:00:00.000Z",
+      "duration": 140,
+      "description": "new test course",
+      "topRated": false
+    },
+    {
+      "id": 1708522766616,
+      "title": "course new",
+      "dateCreation": "2024-02-28T21:00:00.000Z",
+      "duration": 85,
+      "description": "kgd ;ih test course",
+      "topRated": false
     }
   ],
   "user": [
-    {
-      "login": "pakhomova",
-      "token": "kjkjkjkkj45455gg",
-      "email": "pakhomova@kraud.ru",
-      "id": 1
-    },
-    {
-      "login": "pakhomova",
-      "token": "hhbhjvjvhjv64656",
-      "email": "pakhomova@kraud.ru",
-      "id": 2
-    }
+
   ]
 }
