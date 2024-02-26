@@ -35,11 +35,11 @@ export class AuthService {
 
   public logout(name: string, id: number) {
     console.log(`Выход ${name}`)
+    this._isAuthenticated$.next(false)
+    this.token$.next(null)
     return this.httpClient.delete(`${this.baseUrl}/user/${id}`).pipe(
-      map(() => {
+      tap(() => {
         localStorage.removeItem('userInfo')
-        this._isAuthenticated$.next(false)
-        this.token$.next(null)
       })
     )
   }

@@ -1,26 +1,35 @@
-<div class="card p-4 flex flex-column gap-4 login">
+<form
+  #loginForm="ngForm"
+  class="card p-4 flex flex-column gap-4 login"
+  (ngSubmit)="submit(loginForm)"
+>
 <h2>Вход</h2>
 <div class="flex flex-column gap-2 w-full">
     <label htmlFor="email">Email*</label>
-    <input 
-    pInputText 
-    id="email" 
-    placeholder="Например user@domain.com" 
-    [(ngModel)]="email" />
+    <input
+    pInputText
+    id="email"
+    placeholder="Например user@domain.com"
+    ngModel
+    name="email"
+    required
+    email/>
 </div>
 <div class="flex flex-column gap-2 w-full">
     <label htmlFor="password">Пароль*</label>
-    <p-password 
+    <p-password #password
     id="password"
-    [(ngModel)]="password" 
+    ngModel
+    name="password"
     [toggleMask]="true"
-    placeholder="Ваш пароль">
+    placeholder="Ваш пароль"
+    required>
     </p-password>
 </div>
 <div class="flex justify-content-between align-items-center w-full">
     <a class="forgot-link" href="/">Забыли пароль?</a>
-    <button (click)="submit()" type="submit" class="login_btn">
+    <button type="submit" class="login_btn" [disabled]="loginForm.invalid">
     Войти
     </button>
 </div>
-</div>
+</form>

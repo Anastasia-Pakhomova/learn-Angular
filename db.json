@@ -127,9 +127,118 @@
       "duration": 85,
       "description": "kgd ;ih test course",
       "topRated": false
+    },
+    {
+      "id": 1708618260343,
+      "title": "",
+      "dateCreation": "2024-02-22T16:10:24.108Z",
+      "duration": 150,
+      "description": "",
+      "topRated": false,
+      "authors": []
+    },
+    {
+      "title": "title new",
+      "description": "dfgh",
+      "duration": 120,
+      "dateCreation": "2024-02-27T21:00:00.000Z",
+      "id": 1708792985265,
+      "topRated": false
+    },
+    {
+      "title": "",
+      "description": "",
+      "duration": 0,
+      "dateCreation": "2024-02-26T15:45:45.835Z",
+      "id": 1708793621937,
+      "topRated": false
+    },
+    {
+      "title": "hfg",
+      "description": "ghfgh",
+      "duration": "150",
+      "dateCreation": "2024-02-27T21:00:00.000Z",
+      "id": 1708957169013,
+      "topRated": false
     }
   ],
   "user": [
-
+    {
+      "login": "oceanauticatest+43015",
+      "token": "sgsfd61d16d15noceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "sgsfd61d16d15n",
+      "id": 1
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "ghjkm,85623anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "ghjkm,85623",
+      "id": 2
+    },
+    {
+      "login": "pakhomova",
+      "token": "gthjkml;895623pakhomova",
+      "email": "pakhomova@kraud.ru",
+      "password": "gthjkml;895623",
+      "id": 3
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "jkl;785623oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "jkl;785623",
+      "id": 4
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "nhvnbb25oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "nhvnbb25",
+      "id": 5
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "ujkl85anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "ujkl85",
+      "id": 6
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "hjkl7453anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "hjkl7453",
+      "id": 7
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "gg56hganastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "gg56hg",
+      "id": 8
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "fgbbb1n616anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "fgbbb1n616",
+      "id": 9
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "51l,;54oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "51l,;54",
+      "id": 10
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "rdgggvb5232oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "rdgggvb5232",
+      "id": 11
+    }
   ]
 }

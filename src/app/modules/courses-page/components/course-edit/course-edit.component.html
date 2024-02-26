@@ -1,32 +1,57 @@
-<div class="card p-4 flex flex-column gap-4 course-edit">
-    <h2>{{title}}</h2>
+<form
+  [formGroup]="courseForm"
+  (ngSubmit)="save()"
+  class="card p-4 flex flex-column gap-4 course-edit">
+    <h2>{{formTitle}}</h2>
     <div class="flex flex-column">
-        <label class="label text-sm" htmlFor="courseName">Наименование*</label>
-        <input class="field" pInputText id="courseName" [(ngModel)]="courseName" />
+      <label class="label text-sm" htmlFor="title">Наименование*</label>
+      <input class="field" pInputText id="title" formControlName="title" />
+      <small *ngIf="title.invalid && title.touched" class="invalid-message p-error">
+        <p *ngIf="title.errors?.['required']">This field is required</p>
+        <p *ngIf="title.errors?.['maxlength']">The title length must be less than 50 characters</p>
+      </small>
     </div>
     <div class="flex flex-column">
-        <label class="label text-sm" htmlFor="description">Описание*</label>
-        <textarea 
-        id="description" 
-        class="field field_textarea"
-        pInputTextarea
-        autoResize="true"
-        [(ngModel)]="courseDescription"></textarea>
+      <label class="label text-sm" htmlFor="description">Описание*</label>
+      <textarea
+      id="description"
+      class="field field_textarea"
+      pInputTextarea
+      autoResize="true"
+      formControlName="description">
+      </textarea>
+      <small *ngIf="description.invalid && description.touched" class="invalid-message p-error">
+        <p *ngIf="description.hasError('required')">This field is required</p>
+        <p *ngIf="description.hasError('maxlength')">The title length must be less than 500 characters</p>
+      </small>
     </div>
-    <app-course-edit-duration [(duration)]="courseDuration" (durationChange)="getDuration($event)"></app-course-edit-duration>
+    <app-course-edit-duration
+      [parentForm]="courseForm"
+      [courseDuration]="+courseForm.value.duration"
+      (durationChange)="getDuration($event)"
+    ></app-course-edit-duration>
     <div class="flex flex-column">
-    <label class="label text-sm">Дата*</label>
-    <p-calendar 
-    [(ngModel)]="courseDate" 
-    [showIcon]="true"></p-calendar>
+      <label class="label text-sm">Дата*</label>
+      <p-calendar
+        dateFormat="dd/mm/yy"
+        formControlName="dateCreation"
+        [showIcon]="true">
+      </p-calendar>
+      <small *ngIf="dateCreation.invalid && dateCreation.touched" class="invalid-message p-error">
+        <p *ngIf="dateCreation.hasError('required')">This field is required</p>
+<!--        <p *ngIf="dateCreation.hasError('maxLength')">The title length must be less than 500 characters</p>-->
+      </small>
     </div>
     <app-course-edit-authors></app-course-edit-authors>
     <div class="flex gap-2">
         <button routerLink="/courses" type="button" class="btn btn_cancel">
         Отмена
         </button>
-        <button routerLink="/courses" (click)="save()" type="button" class="btn btn_save">
+        <button
+        type="submit"
+        class="btn btn_save"
+       >
         Сохранить
         </button>
     </div>
-</div>
+</form>

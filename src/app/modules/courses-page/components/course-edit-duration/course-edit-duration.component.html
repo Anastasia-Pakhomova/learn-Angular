@@ -1,14 +1,13 @@
-<div class="flex align-items-center wrapper">
+<div [formGroup]="parentForm" class="flex align-items-center wrapper">
 <div class="flex flex-column">
     <label class="label text-sm" htmlFor="duration">Продожительность*</label>
-    <p-inputNumber 
-    [(ngModel)]="duration" 
-    (onBlur)="handleChange()"
-    mode="decimal" 
-    inputId="duration" 
-    [useGrouping]="false"
-    [showButtons]="true"
-    [min]="0"></p-inputNumber>
+    <input
+      class="field"
+      pInputText
+      id="duration"
+      formControlName="duration"
+
+    />
 </div>
-<span class="text-sm transform-time">{{duration | duration}}</span>
+<span class="text-sm transform-time">{{courseDuration | duration}}</span>
 </div>

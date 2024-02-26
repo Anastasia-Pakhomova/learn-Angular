@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './modules/core/core.module';
 import { CoursesPageModule } from './modules/courses-page/courses-page.module';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import '@angular/common/locales/global/ru';
 import { LoginPageModule } from './modules/login-page/login-page.module';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
@@ -29,7 +29,8 @@ import {LoadingInterceptor} from "./interceptors/loading.interceptor";
     CoursesPageModule,
     LoginPageModule,
     FormsModule,
-    FilterPipe
+    FilterPipe,
+    ReactiveFormsModule,
   ],
   providers: [
     FilterPipe,

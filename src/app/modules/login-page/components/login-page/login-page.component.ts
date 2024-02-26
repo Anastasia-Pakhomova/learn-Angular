@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserInfo } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/authentication/auth.service';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +10,6 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  public email = ''
-  public password = ''
   public isAuthenticated = false
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -24,14 +23,14 @@ export class LoginPageComponent implements OnInit {
       })
   }
 
-  public submit() {
-    if(this.email.length && this.password.length) {
-      const emailParts = this.email.split('@')
+  public submit(form: NgForm) {
+    if(form.value.email.length && form.value.password.length) {
+      const emailParts = form.value.email.split('@')
       const user = {
         login: emailParts[0],
-        token: this.password+emailParts[0],
-        email: this.email,
-        password: this.password
+        token: form.value.password+emailParts[0],
+        email: form.value.email,
+        password: form.value.password
       };
       this.login(user)
     }
