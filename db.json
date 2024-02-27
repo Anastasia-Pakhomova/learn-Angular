@@ -57,12 +57,18 @@
       "topRated": true
     },
     {
-      "id": 8,
       "title": "Sit voluptate eiusmod ea",
-      "dateCreation": "2024-07-19",
-      "duration": 100,
       "description": "Commodo id sunt sunt adipisicing et aliquip voluptate laborum consectetur. Occaecat nisi sint exercitation ullamco adipisicing irure est in consectetur aute voluptate. Ea pariatur dolor anim ea reprehenderit ut non occaecat magna adipisicing exercitation nisi consequat.",
-      "topRated": true
+      "duration": 100,
+      "dateCreation": "2024-07-19T00:00:00.000Z",
+      "authors": [
+        {
+          "id": 13,
+          "name": "Marilyn Monroe"
+        }
+      ],
+      "id": 8,
+      "topRated": false
     },
     {
       "id": 9,
@@ -121,124 +127,147 @@
       "topRated": false
     },
     {
-      "id": 1708522766616,
       "title": "course new",
-      "dateCreation": "2024-02-28T21:00:00.000Z",
-      "duration": 85,
       "description": "kgd ;ih test course",
+      "duration": 85,
+      "dateCreation": "2024-02-28T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 1,
+          "name": "Alex Lo"
+        },
+        {
+          "id": 9,
+          "name": "Angelina Jolie"
+        }
+      ],
+      "id": 1708522766616,
       "topRated": false
-    },
-    {
-      "id": 1708618260343,
-      "title": "",
-      "dateCreation": "2024-02-22T16:10:24.108Z",
-      "duration": 150,
-      "description": "",
-      "topRated": false,
-      "authors": []
     },
     {
       "title": "title new",
       "description": "dfgh",
-      "duration": 120,
-      "dateCreation": "2024-02-27T21:00:00.000Z",
+      "duration": "150",
+      "dateCreation": "2024-03-04T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 9,
+          "name": "Angelina Jolie"
+        },
+        {
+          "id": 6,
+          "name": "Ann Hoho"
+        }
+      ],
       "id": 1708792985265,
       "topRated": false
     },
     {
-      "title": "",
-      "description": "",
-      "duration": 0,
-      "dateCreation": "2024-02-26T15:45:45.835Z",
-      "id": 1708793621937,
+      "title": "new course hey",
+      "description": "ghfgh",
+      "duration": "100",
+      "dateCreation": "2024-03-10T21:00:00.000Z",
+      "id": 1708957169013,
       "topRated": false
     },
     {
-      "title": "hfg",
-      "description": "ghfgh",
-      "duration": "150",
-      "dateCreation": "2024-02-27T21:00:00.000Z",
-      "id": 1708957169013,
+      "title": "новый",
+      "description": "новый курс",
+      "duration": "90",
+      "dateCreation": "2024-02-24T21:00:00.000Z",
+      "id": 1709035604513,
+      "topRated": false
+    },
+    {
+      "title": "new course 23",
+      "description": "new new hohoho",
+      "duration": "100",
+      "dateCreation": "2024-03-05T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 4,
+          "name": "Alexandr Lou"
+        }
+      ],
+      "id": 1709051225912,
       "topRated": false
     }
   ],
   "user": [
     {
-      "login": "oceanauticatest+43015",
-      "token": "sgsfd61d16d15noceanauticatest+43015",
-      "email": "oceanauticatest+43015@gmail.com",
-      "password": "sgsfd61d16d15n",
+      "login": "apakhomova",
+      "token": "bb45d54dfb58apakhomova",
+      "email": "apakhomova@diasoft.ru",
+      "password": "bb45d54dfb58",
       "id": 1
     },
     {
-      "login": "anastasiyap999",
-      "token": "ghjkm,85623anastasiyap999",
-      "email": "anastasiyap999@gmail.com",
-      "password": "ghjkm,85623",
+      "login": "apakhomova",
+      "token": "dfghghfg1653146apakhomova",
+      "email": "apakhomova@diasoft.ru",
+      "password": "dfghghfg1653146",
       "id": 2
     },
     {
-      "login": "pakhomova",
-      "token": "gthjkml;895623pakhomova",
-      "email": "pakhomova@kraud.ru",
-      "password": "gthjkml;895623",
+      "login": "apakhomova",
+      "token": "vf4d65h4dg6+apakhomova",
+      "email": "apakhomova@diasoft.ru",
+      "password": "vf4d65h4dg6+",
       "id": 3
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Alex Lo"
     },
     {
-      "login": "oceanauticatest+43015",
-      "token": "jkl;785623oceanauticatest+43015",
-      "email": "oceanauticatest+43015@gmail.com",
-      "password": "jkl;785623",
-      "id": 4
+      "id": 2,
+      "name": "Alex Ivanov"
     },
     {
-      "login": "oceanauticatest+43015",
-      "token": "nhvnbb25oceanauticatest+43015",
-      "email": "oceanauticatest+43015@gmail.com",
-      "password": "nhvnbb25",
-      "id": 5
+      "id": 3,
+      "name": "Ivan Petrov"
     },
     {
-      "login": "anastasiyap999",
-      "token": "ujkl85anastasiyap999",
-      "email": "anastasiyap999@gmail.com",
-      "password": "ujkl85",
-      "id": 6
+      "id": 4,
+      "name": "Alexandr Lou"
     },
     {
-      "login": "anastasiyap999",
-      "token": "hjkl7453anastasiyap999",
-      "email": "anastasiyap999@gmail.com",
-      "password": "hjkl7453",
-      "id": 7
+      "id": 5,
+      "name": "Anna Katz"
     },
     {
-      "login": "anastasiyap999",
-      "token": "gg56hganastasiyap999",
-      "email": "anastasiyap999@gmail.com",
-      "password": "gg56hg",
-      "id": 8
+      "id": 6,
+      "name": "Ann Hoho"
     },
     {
-      "login": "anastasiyap999",
-      "token": "fgbbb1n616anastasiyap999",
-      "email": "anastasiyap999@gmail.com",
-      "password": "fgbbb1n616",
-      "id": 9
+      "id": 7,
+      "name": "Kate York"
     },
     {
-      "login": "oceanauticatest+43015",
-      "token": "51l,;54oceanauticatest+43015",
-      "email": "oceanauticatest+43015@gmail.com",
-      "password": "51l,;54",
-      "id": 10
+      "id": 8,
+      "name": "Meryl Streep"
     },
     {
-      "login": "oceanauticatest+43015",
-      "token": "rdgggvb5232oceanauticatest+43015",
-      "email": "oceanauticatest+43015@gmail.com",
-      "password": "rdgggvb5232",
-      "id": 11
+      "id": 9,
+      "name": "Angelina Jolie"
+    },
+    {
+      "id": 10,
+      "name": "Natalie Portman"
+    },
+    {
+      "id": 11,
+      "name": "Naomi Watts"
+    },
+    {
+      "id": 12,
+      "name": "Sandra Bullock"
+    },
+    {
+      "id": 13,
+      "name": "Marilyn Monroe"
     }
   ]
 }

@@ -2,12 +2,16 @@
 <div class="flex flex-column">
     <label class="label text-sm" htmlFor="duration">Продожительность*</label>
     <input
-      class="field"
-      pInputText
-      id="duration"
-      formControlName="duration"
-
+    class="field"
+    pInputText
+    id="duration"
+    formControlName="duration"
     />
 </div>
 <span class="text-sm transform-time">{{courseDuration | duration}}</span>
 </div>
+<small *ngIf="duration.invalid && duration.touched" class="invalid-message p-error">
+  <p *ngIf="duration.hasError('required')">This field is required</p>
+  <p *ngIf="duration.hasError('pattern')">This field can only contain numbers</p>
+  <p *ngIf="duration.hasError('min')">The number must be greater than 30</p>
+</small>

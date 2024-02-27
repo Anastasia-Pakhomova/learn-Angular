@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CourseInterface } from 'src/app/interfaces/course';
+import { CourseInterface, IAuthor } from 'src/app/interfaces/course';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FilterPipe} from "../../pipes/filter.pipe";
@@ -48,6 +48,10 @@ export class CoursesService {
         params: new HttpParams()
           .set('q', text.trim())
       })
+  }
+
+  public getAuthors(): Observable<IAuthor[]> {
+    return this.httpClient.get<IAuthor[]>(`${this.baseUrl}/authors`)
   }
 }
 

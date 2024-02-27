@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CourseInterface } from 'src/app/interfaces/course';
+import { CourseInterface, IAuthor } from 'src/app/interfaces/course';
 import { CoursesService } from 'src/app/services/courses/courses.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { authorsValidator } from "../../validation/validation";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course-edit',
@@ -13,14 +14,11 @@ import { authorsValidator } from "../../validation/validation";
 })
 export class CourseEditComponent implements OnInit {
   public formTitle = ''
-  // public courseName =''
-  // public courseDescription =''
-  // public courseDateCreation: Date = new Date()
-  // public duration = 0
   private route =''
+  public authorsList: Observable<IAuthor[]> = this.coursesService.getAuthors()
 
   constructor(
-    private coursesService: CoursesService,
+    public coursesService: CoursesService,
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
     private fb: FormBuilder
@@ -34,28 +32,16 @@ export class CourseEditComponent implements OnInit {
     return this.courseForm.get('description') as FormControl;
   }
 
-  public get courseDuration(): FormControl {
-    return this.courseForm.get('duration') as FormControl;
-  }
-
-  public get duration(): number {
-    return this.courseForm.value.duration
-  }
-
   public get dateCreation(): FormControl {
     return this.courseForm.get('dateCreation') as FormControl;
-  }
-
-  public get authors(): FormControl {
-    return this.courseForm.get('authors') as FormControl;
   }
 
   public courseForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.maxLength(500)]],
-    duration: [0, [Validators.required, Validators.min(30)]],
+    duration: [0, [Validators.required, Validators.min(30), Validators.pattern(/^\d+$/)]],
     dateCreation: [new Date(), [Validators.required]],
-    //authors: [[''], [Validators.required, authorsValidator]]
+    authors: [[], [Validators.required, authorsValidator]]
   })
 
   getDuration(duration: number) {
@@ -63,7 +49,7 @@ export class CourseEditComponent implements OnInit {
   }
 
    public save() {
-    console.log(this.courseForm.value.duration)
+    console.log(this.courseForm)
     if(this.route) {
       const newCourse: CourseInterface = {
         ...this.courseForm.value,
@@ -75,7 +61,9 @@ export class CourseEditComponent implements OnInit {
           if(response) this.router.navigate(['/courses'])
         })
       }
-      else this.coursesService.updateCourse(+this.route, newCourse).subscribe(response => console.log(response))
+      else this.coursesService.updateCourse(+this.route, newCourse).subscribe(response => {
+        if(response) this.router.navigate(['/courses'])
+      })
     }
   }
 
@@ -88,11 +76,12 @@ export class CourseEditComponent implements OnInit {
         .subscribe((data: CourseInterface[]) => {
           const course = data[0]
           this.courseForm.setValue({
-            ...course,
+            title: course.title,
             dateCreation: new Date(course.dateCreation),
-            //duration: this.getDuration(course.duration)
+            duration: course.duration,
+            description: course.description,
+            authors: course.authors ?? [],
           })
-          //this.getDuration(course.duration)
           this.changeDetectorRef.detectChanges();
         })
       }

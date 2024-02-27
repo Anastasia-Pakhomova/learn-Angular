@@ -39,10 +39,12 @@
       </p-calendar>
       <small *ngIf="dateCreation.invalid && dateCreation.touched" class="invalid-message p-error">
         <p *ngIf="dateCreation.hasError('required')">This field is required</p>
-<!--        <p *ngIf="dateCreation.hasError('maxLength')">The title length must be less than 500 characters</p>-->
       </small>
     </div>
-    <app-course-edit-authors></app-course-edit-authors>
+    <app-course-edit-authors 
+    [authorsList] = "(authorsList | async) || []"
+    [parentForm]="courseForm">
+    </app-course-edit-authors>
     <div class="flex gap-2">
         <button routerLink="/courses" type="button" class="btn btn_cancel">
         Отмена
@@ -50,6 +52,7 @@
         <button
         type="submit"
         class="btn btn_save"
+        [disabled]="courseForm.invalid"
        >
         Сохранить
         </button>

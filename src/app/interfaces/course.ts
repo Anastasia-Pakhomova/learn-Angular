@@ -13,3 +13,8 @@ export interface IBreadcrumbsItems {
     text: string
     link?: string
 }
+
+export interface IAuthor {
+    id: number
+    name: string
+}

@@ -1,14 +1,11 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
-  OnChanges,
-  OnInit,
   Output
 } from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-course-edit-duration',
@@ -23,5 +20,9 @@ export class CourseEditDurationComponent{
 
   handleChange() {
     this.durationChange.emit(this.courseDuration);
+  }
+
+  public get duration(): FormControl {
+    return this.parentForm.get('duration') as FormControl;
   }
 }
