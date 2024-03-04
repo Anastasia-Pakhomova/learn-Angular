@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CourseInterface, IAuthor } from 'src/app/interfaces/course';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {FilterPipe} from "../../pipes/filter.pipe";
 import {environment} from "src/environments/environment.development";
 
@@ -28,10 +28,12 @@ export class CoursesService {
     return this.httpClient.post<CourseInterface>(`${this.baseUrl}/courses`, course)
   }
 
-  public getCourse(id: number): Observable<CourseInterface[]> {
+  public getCourse(id: number): Observable<CourseInterface> {
     return this.httpClient.get<CourseInterface[]>(`${this.baseUrl}/courses`, {
         params: new HttpParams().set('id', id)
-    });
+    }).pipe(
+      map(data => data[0])
+    )
   }
 
   public updateCourse(id: number, course: CourseInterface): Observable<CourseInterface> {

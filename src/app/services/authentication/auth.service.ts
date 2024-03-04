@@ -28,8 +28,8 @@ export class AuthService {
         this.token$.next(data.token)
         return data.token
       }),
-      switchMap(token => this.getUserInfo(token)),
-      tap(res => this.userName$.next(res))
+      // switchMap(token => this.getUserInfo(token)),
+      // tap(res => this.userName$.next(res))
     )
   }
 

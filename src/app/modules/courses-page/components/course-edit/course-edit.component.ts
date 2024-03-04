@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CourseInterface, IAuthor } from 'src/app/interfaces/course';
-import { CoursesService } from 'src/app/services/courses/courses.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { authorsValidator } from "../../validation/validation";
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
+import {Store} from "@ngrx/store";
+import { State } from 'src/app/store';
+import {selectAuthors, selectCourse} from "src/app/store/courses/selectors/courses-selectors.selectors";
+import {createCourse, getAuthors, getCourse, updateCourse} from "src/app/store/courses/actions/courses-actions.actions";
 
 @Component({
   selector: 'app-course-edit',
@@ -15,13 +18,13 @@ import { Observable } from 'rxjs';
 export class CourseEditComponent implements OnInit {
   public formTitle = ''
   private route =''
-  public authorsList: Observable<IAuthor[]> = this.coursesService.getAuthors()
+  public authorsList: Observable<IAuthor[]> = this.store.select(selectAuthors)
 
   constructor(
-    public coursesService: CoursesService,
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store<State>
     ) {}
 
   public get title(): FormControl {
@@ -57,34 +60,31 @@ export class CourseEditComponent implements OnInit {
         topRated: false,
       }
       if(this.route === 'new') {
-        this.coursesService.createCourse(newCourse).subscribe(response => {
-          if(response) this.router.navigate(['/courses'])
-        })
+        this.store.dispatch(createCourse({course: newCourse}))
       }
-      else this.coursesService.updateCourse(+this.route, newCourse).subscribe(response => {
-        if(response) this.router.navigate(['/courses'])
-      })
+      else {
+        this.store.dispatch(updateCourse({id: +this.route, course: newCourse}))
+      }
     }
   }
 
-  getCourseInfo(url: string): void {
-    if (url.length) {
-      if(this.route === 'new') this.formTitle = 'Новый курс'
-      else {
-        this.formTitle = 'Редактирование курса'
-        this.coursesService.getCourse(+this.route)
-        .subscribe((data: CourseInterface[]) => {
-          const course = data[0]
-          this.courseForm.setValue({
-            title: course.title,
-            dateCreation: new Date(course.dateCreation),
-            duration: course.duration,
-            description: course.description,
-            authors: course.authors ?? [],
-          })
-          this.changeDetectorRef.detectChanges();
+  getCourseInfo(): void {
+    if(this.route === 'new') this.formTitle = 'Новый курс'
+    else {
+      this.formTitle = 'Редактирование курса'
+      this.store.select(selectCourse)
+        .subscribe((data: CourseInterface|null) => {
+          if(data) {
+            this.courseForm.setValue({
+              title: data.title,
+              dateCreation: new Date(data.dateCreation),
+              duration: data.duration,
+              description: data.description,
+              authors: data.authors ?? [],
+            })
+            this.changeDetectorRef.detectChanges();
+          }
         })
-      }
     }
   }
 
@@ -92,6 +92,8 @@ export class CourseEditComponent implements OnInit {
       const urlArr = this.router.routerState.snapshot.url.split('/')
       urlArr.shift()
       this.route = urlArr[1]
-      this.getCourseInfo(urlArr[1])
+      if(this.route !== 'new')this.store.dispatch(getCourse({id: +this.route}))
+      if(this.route) this.getCourseInfo()
+      this.store.dispatch(getAuthors())
   }
 }

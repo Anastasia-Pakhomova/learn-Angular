@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { Store } from '@ngrx/store';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CourseInterface } from 'src/app/interfaces/course';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
-import { CoursesService } from 'src/app/services/courses/courses.service';
-import {BehaviorSubject, debounceTime, filter, merge, Observable, of, Subject, switchMap, tap} from "rxjs";
+import { debounceTime, filter, Observable, of, tap} from "rxjs";
+import { State } from 'src/app/store';
+import {getCourses, searchCourses, removeCourse} from "../../store/courses/actions/courses-actions.actions";
+import {selectCourses} from "../../store/courses/selectors/courses-selectors.selectors";
 
 @Component({
   selector: 'app-courses-page',
@@ -11,32 +14,25 @@ import {BehaviorSubject, debounceTime, filter, merge, Observable, of, Subject, s
   styleUrls: ['./courses-page.component.scss'],
   providers: [ConfirmationService, MessageService, FilterPipe]
 })
-export class CoursesPageComponent {
+export class CoursesPageComponent implements OnInit {
   public searchCourse: any;
   public limit = 5
 
-  private refresh$: BehaviorSubject<number> = new BehaviorSubject<number>(5);
-  private search$: Subject<CourseInterface[]> = new Subject<CourseInterface[]>();
-  public courses$: Observable<CourseInterface[]> = merge(
-    this.refresh$.pipe(switchMap((limit) =>  this.coursesService.getList(limit))),
-    this.search$
-  );
+  public courses$: Observable<CourseInterface[]> = this.store.select(selectCourses);
 
   constructor(
     private filterPipe: FilterPipe,
-    private coursesService: CoursesService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
+    private store: Store<State>
     ) {}
 
   filterCourses(text: string) {
-    if(text.trim().length === 0) this.refresh$.next(this.limit)
+    if(text.trim().length === 0) this.store.dispatch(getCourses({limit: this.limit}))
     of(text).pipe(
       filter(text => !!text && text.length>=3),
       debounceTime(250),
-      switchMap(text => this.coursesService.searchCourses(text).pipe(
-        tap(courses => this.search$.next(courses))
-      ))
+      tap(value => this.store.dispatch(searchCourses({text: value.toLowerCase()})))
     ).subscribe()
   }
 
@@ -56,7 +52,8 @@ export class CoursesPageComponent {
         rejectButtonStyleClass: 'p-button-sm p-button-text',
         acceptButtonStyleClass: 'p-button-danger p-button-sm',
         accept: () => {
-            this.coursesService.removeCourse(id).subscribe(() => this.refresh$.next(this.limit))
+            this.store.dispatch(removeCourse({id}))
+            this.store.dispatch(getCourses({limit: this.limit}))
             this.messageService.add({ severity: 'success', summary: 'Курс удален', detail: 'Вы подтвердили удаление курса', life: 3000 });
 
         },
@@ -75,7 +72,11 @@ export class CoursesPageComponent {
   }
 
   public handleLoad(count: number) {
-    this.refresh$.next(count)
+    this.store.dispatch(getCourses({limit: count}))
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(getCourses({limit: this.limit}))
   }
 
 }

@@ -1,6 +1,12 @@
 import {Component} from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/authentication/auth.service';
+import {Store} from "@ngrx/store";
+import {State} from "src/app/store";
+import {logout} from "src/app/store/auth/actions/auth-actions.actions";
+import {Observable} from "rxjs";
+import {
+  selectIsAuthenticated,
+  selectUserName
+} from "src/app/store/auth/selectors/auth-selectors.selectors";
 
 @Component({
   selector: 'app-header',
@@ -9,16 +15,17 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 })
 export class HeaderComponent {
   private userInfo = {token: "", id: 0}
+  public IsAuthenticated$: Observable<boolean> = this.store.select(selectIsAuthenticated);
+  public userName$: Observable<string> = this.store.select(selectUserName);
 
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(private store: Store<State>) {}
 
   public handleLogout(name: string) {
     const user = localStorage.getItem('userInfo')
     if(user !== null) {
       this.userInfo = JSON.parse(user)
     }
-    this.authService.logout(name, this.userInfo.id).subscribe()
-    this.router.navigate(['/login'])
+    this.store.dispatch(logout({name, id: this.userInfo.id}))
   }
 
 }

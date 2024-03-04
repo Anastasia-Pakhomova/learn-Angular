@@ -18,16 +18,14 @@ export class BreadcrumbsComponent implements OnInit {
   ]
 
   constructor(private coursesService: CoursesService, private router: Router) {}
-  
+
     updateBreadcrumbsItems(route: string): void {
       if(route.length) {
         if(route === 'new') this.list.push({text: 'Новый курс'})
         else {
-          let course: CourseInterface
           this.coursesService.getCourse(+route)
-          .subscribe((data: CourseInterface[]) => {
-            course = data[0]
-            this.list.push({text: course?.title ?? ''})
+          .subscribe((data: CourseInterface) => {
+            this.list.push({text: data?.title ?? ''})
           })
         }
       }
@@ -35,11 +33,11 @@ export class BreadcrumbsComponent implements OnInit {
         if(this.list.length>1) this.list.pop()
       }
     }
-  
+
     ngOnInit(): void {
       this.router.events.subscribe(events => {
         if (events instanceof NavigationEnd) {
-          let urlArray = events.url.split('/')
+          const urlArray = events.url.split('/')
           urlArray.shift()
           if(urlArray.length === 2) this.updateBreadcrumbsItems(urlArray[1])
           else this.updateBreadcrumbsItems('')

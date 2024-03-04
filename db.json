@@ -111,55 +111,21 @@
       "topRated": false
     },
     {
-      "id": 1707409557761,
-      "title": "new",
-      "dateCreation": "2024-02-13T21:00:00.000Z",
-      "duration": 120,
-      "description": "gkgk kjgkjgkj",
-      "topRated": false
-    },
-    {
-      "id": 1708506201426,
-      "title": "new",
-      "dateCreation": "2024-02-26T21:00:00.000Z",
-      "duration": 140,
+      "title": "new course edit",
       "description": "new test course",
-      "topRated": false
-    },
-    {
-      "title": "course new",
-      "description": "kgd ;ih test course",
-      "duration": 85,
-      "dateCreation": "2024-02-28T21:00:00.000Z",
+      "duration": "160",
+      "dateCreation": "2024-03-18T21:00:00.000Z",
       "authors": [
         {
-          "id": 1,
-          "name": "Alex Lo"
-        },
-        {
-          "id": 9,
-          "name": "Angelina Jolie"
-        }
-      ],
-      "id": 1708522766616,
-      "topRated": false
-    },
-    {
-      "title": "title new",
-      "description": "dfgh",
-      "duration": "150",
-      "dateCreation": "2024-03-04T21:00:00.000Z",
-      "authors": [
-        {
-          "id": 9,
-          "name": "Angelina Jolie"
+          "id": 5,
+          "name": "Anna Katz"
         },
         {
           "id": 6,
           "name": "Ann Hoho"
         }
       ],
-      "id": 1708792985265,
+      "id": 1708506201426,
       "topRated": false
     },
     {
@@ -171,10 +137,16 @@
       "topRated": false
     },
     {
-      "title": "новый",
+      "title": "новый март",
       "description": "новый курс",
       "duration": "90",
-      "dateCreation": "2024-02-24T21:00:00.000Z",
+      "dateCreation": "2024-03-11T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 12,
+          "name": "Sandra Bullock"
+        }
+      ],
       "id": 1709035604513,
       "topRated": false
     },
@@ -191,30 +163,51 @@
       ],
       "id": 1709051225912,
       "topRated": false
+    },
+    {
+      "title": "spring course",
+      "description": "spring course",
+      "duration": "120",
+      "dateCreation": "2024-03-10T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 6,
+          "name": "Ann Hoho"
+        }
+      ],
+      "id": 1709534008528,
+      "topRated": false
+    },
+    {
+      "title": "new new test",
+      "description": "new new test",
+      "duration": "160",
+      "dateCreation": "2024-03-06T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 2,
+          "name": "Alex Ivanov"
+        }
+      ],
+      "id": 1709535271461,
+      "topRated": false
+    },
+    {
+      "title": "test test new",
+      "description": "test test new",
+      "duration": "135",
+      "dateCreation": "2024-03-05T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 12,
+          "name": "Sandra Bullock"
+        }
+      ],
+      "id": 1709538699384,
+      "topRated": false
     }
   ],
   "user": [
-    {
-      "login": "apakhomova",
-      "token": "bb45d54dfb58apakhomova",
-      "email": "apakhomova@diasoft.ru",
-      "password": "bb45d54dfb58",
-      "id": 1
-    },
-    {
-      "login": "apakhomova",
-      "token": "dfghghfg1653146apakhomova",
-      "email": "apakhomova@diasoft.ru",
-      "password": "dfghghfg1653146",
-      "id": 2
-    },
-    {
-      "login": "apakhomova",
-      "token": "vf4d65h4dg6+apakhomova",
-      "email": "apakhomova@diasoft.ru",
-      "password": "vf4d65h4dg6+",
-      "id": 3
-    }
   ],
   "authors": [
     {
