@@ -13,6 +13,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FilterPipe} from "./pipes/filter.pipe";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
 import {LoadingInterceptor} from "./interceptors/loading.interceptor";
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {environment} from "../environments/environment.development";
+import {StoreRouterConnectingModule} from "@ngrx/router-store";
+import { reducers, metaReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { CoursesEffects } from './store/courses/effects/courses-effects.effects';
+import { AuthEffects } from './store/auth/effects/auth-effects.effects';
 
 
 @NgModule({
@@ -31,6 +39,10 @@ import {LoadingInterceptor} from "./interceptors/loading.interceptor";
     FormsModule,
     FilterPipe,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot(),
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
+    EffectsModule.forRoot([CoursesEffects, AuthEffects]),
   ],
   providers: [
     FilterPipe,

@@ -1,26 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserInfo } from 'src/app/interfaces/user';
-import { AuthService } from 'src/app/services/authentication/auth.service';
 import { NgForm } from "@angular/forms";
+import {Store} from "@ngrx/store";
+import { State } from 'src/app/store';
+import {login} from "src/app/store/auth/actions/auth-actions.actions";
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
   public isAuthenticated = false
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router, private store: Store<State>) {}
 
   public login(user: UserInfo) {
-    this.authService.login(user)
-      .subscribe({
-          next: (result) => {
-            if(result) this.router.navigateByUrl('/courses');
-          }
-      })
+    this.store.dispatch(login({user}))
   }
 
   public submit(form: NgForm) {
@@ -36,8 +33,4 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.authService.getIsAuthenticated.subscribe(auth => this.isAuthenticated = auth)
-    if(this.isAuthenticated) this.router.navigate(['/courses'])
-  }
 }
