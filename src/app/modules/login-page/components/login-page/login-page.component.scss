@@ -16,6 +16,11 @@
         &:hover {
             background-color: var(--cyan-500);
         }
+      &:disabled {
+        background-color: var(--bluegray-100);
+        border: 1px solid var(--bluegray-100);
+        color: var(--bluegray-700);
+      }
     }
 }
 

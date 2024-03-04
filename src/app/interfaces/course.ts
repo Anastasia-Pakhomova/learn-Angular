@@ -5,10 +5,16 @@ export interface CourseInterface {
     duration: number
     description: string
     topRated: boolean
+    authors: string[]
 }
 
 export interface IBreadcrumbsItems {
     icon?: string
     text: string
-    link?: string 
+    link?: string
+}
+
+export interface IAuthor {
+    id: number
+    name: string
 }

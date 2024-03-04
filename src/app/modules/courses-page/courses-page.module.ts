@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
@@ -18,6 +18,7 @@ import { CourseEditComponent } from './components/course-edit/course-edit.compon
 import { CourseEditDurationComponent } from './components/course-edit-duration/course-edit-duration.component';
 import { CourseEditAuthorsComponent } from './components/course-edit-authors/course-edit-authors.component';
 import { RouterModule } from '@angular/router';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -32,18 +33,20 @@ import { RouterModule } from '@angular/router';
     CourseEditDurationComponent,
     CourseEditAuthorsComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ButtonModule,
-    ConfirmDialogModule,
-    ToastModule,
-    CalendarModule,
-    InputNumberModule,
-    RouterModule,
-    DurationPipe,
-    OrderByPipe,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ButtonModule,
+        ConfirmDialogModule,
+        ToastModule,
+        CalendarModule,
+        InputNumberModule,
+        RouterModule,
+        DurationPipe,
+        OrderByPipe,
+        AutoCompleteModule,
+        ReactiveFormsModule
+    ],
   exports: [
     CoursesPageComponent,
     BreadcrumbsComponent

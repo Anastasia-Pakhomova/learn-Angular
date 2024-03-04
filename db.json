@@ -57,12 +57,18 @@
       "topRated": true
     },
     {
-      "id": 8,
       "title": "Sit voluptate eiusmod ea",
-      "dateCreation": "2024-07-19",
-      "duration": 100,
       "description": "Commodo id sunt sunt adipisicing et aliquip voluptate laborum consectetur. Occaecat nisi sint exercitation ullamco adipisicing irure est in consectetur aute voluptate. Ea pariatur dolor anim ea reprehenderit ut non occaecat magna adipisicing exercitation nisi consequat.",
-      "topRated": true
+      "duration": 100,
+      "dateCreation": "2024-07-19T00:00:00.000Z",
+      "authors": [
+        {
+          "id": 13,
+          "name": "Marilyn Monroe"
+        }
+      ],
+      "id": 8,
+      "topRated": false
     },
     {
       "id": 9,
@@ -121,15 +127,147 @@
       "topRated": false
     },
     {
-      "id": 1708522766616,
       "title": "course new",
-      "dateCreation": "2024-02-28T21:00:00.000Z",
-      "duration": 85,
       "description": "kgd ;ih test course",
+      "duration": 85,
+      "dateCreation": "2024-02-28T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 1,
+          "name": "Alex Lo"
+        },
+        {
+          "id": 9,
+          "name": "Angelina Jolie"
+        }
+      ],
+      "id": 1708522766616,
+      "topRated": false
+    },
+    {
+      "title": "title new",
+      "description": "dfgh",
+      "duration": "150",
+      "dateCreation": "2024-03-04T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 9,
+          "name": "Angelina Jolie"
+        },
+        {
+          "id": 6,
+          "name": "Ann Hoho"
+        }
+      ],
+      "id": 1708792985265,
+      "topRated": false
+    },
+    {
+      "title": "new course hey",
+      "description": "ghfgh",
+      "duration": "100",
+      "dateCreation": "2024-03-10T21:00:00.000Z",
+      "id": 1708957169013,
+      "topRated": false
+    },
+    {
+      "title": "новый",
+      "description": "новый курс",
+      "duration": "90",
+      "dateCreation": "2024-02-24T21:00:00.000Z",
+      "id": 1709035604513,
+      "topRated": false
+    },
+    {
+      "title": "new course 23",
+      "description": "new new hohoho",
+      "duration": "100",
+      "dateCreation": "2024-03-05T21:00:00.000Z",
+      "authors": [
+        {
+          "id": 4,
+          "name": "Alexandr Lou"
+        }
+      ],
+      "id": 1709051225912,
       "topRated": false
     }
   ],
   "user": [
-
+    {
+      "login": "apakhomova",
+      "token": "bb45d54dfb58apakhomova",
+      "email": "apakhomova@diasoft.ru",
+      "password": "bb45d54dfb58",
+      "id": 1
+    },
+    {
+      "login": "apakhomova",
+      "token": "dfghghfg1653146apakhomova",
+      "email": "apakhomova@diasoft.ru",
+      "password": "dfghghfg1653146",
+      "id": 2
+    },
+    {
+      "login": "apakhomova",
+      "token": "vf4d65h4dg6+apakhomova",
+      "email": "apakhomova@diasoft.ru",
+      "password": "vf4d65h4dg6+",
+      "id": 3
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Alex Lo"
+    },
+    {
+      "id": 2,
+      "name": "Alex Ivanov"
+    },
+    {
+      "id": 3,
+      "name": "Ivan Petrov"
+    },
+    {
+      "id": 4,
+      "name": "Alexandr Lou"
+    },
+    {
+      "id": 5,
+      "name": "Anna Katz"
+    },
+    {
+      "id": 6,
+      "name": "Ann Hoho"
+    },
+    {
+      "id": 7,
+      "name": "Kate York"
+    },
+    {
+      "id": 8,
+      "name": "Meryl Streep"
+    },
+    {
+      "id": 9,
+      "name": "Angelina Jolie"
+    },
+    {
+      "id": 10,
+      "name": "Natalie Portman"
+    },
+    {
+      "id": 11,
+      "name": "Naomi Watts"
+    },
+    {
+      "id": 12,
+      "name": "Sandra Bullock"
+    },
+    {
+      "id": 13,
+      "name": "Marilyn Monroe"
+    }
   ]
 }

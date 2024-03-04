@@ -8,7 +8,7 @@
         border: 1px solid var(--cyan-600);
         outline: none;
         box-shadow: none;
-    } 
+    }
 }
 
 .wrapper {
@@ -22,4 +22,17 @@
 .label {
     padding-left: 12px;
     color: var(--bluegray-500);
+}
+
+.field {
+  border-radius: 4px;
+  width: 540px;
+  height: 40px;
+  border: 1px solid var(--gray-200);
+  padding: 10px 12px;
+  margin: 0;
+  &:focus, &:active {
+    border: 1px solid var(--cyan-600);
+    outline: none;
+  }
 }

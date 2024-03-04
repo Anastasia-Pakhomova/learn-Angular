@@ -1,1 +1,16 @@
-<p>Авторы*</p>
+<div [formGroup]="parentForm" class="wrapper">
+    <span class="p-fluid flex flex-column">
+        <label class="label text-sm" htmlFor="authors">Авторы*</label>
+        <p-autoComplete 
+        id="authors"
+        formControlName="authors"
+        [suggestions]="filteredAuthors" 
+        (completeMethod)="filterAuthors($event)" 
+        field="name"
+        [multiple]="true"> 
+        </p-autoComplete>
+    </span>
+    <small *ngIf="authors.invalid && authors.touched" class="invalid-message p-error">
+        <p *ngIf="authors.hasError('required')">This field is required</p>
+    </small>
+</div>
