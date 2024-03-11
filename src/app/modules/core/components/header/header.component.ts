@@ -14,7 +14,7 @@ import {
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  private userInfo = {token: "", id: 0}
+  userInfo = {token: "", id: 0}
   public IsAuthenticated$: Observable<boolean> = this.store.select(selectIsAuthenticated);
   public userName$: Observable<string> = this.store.select(selectUserName);
 

@@ -9,7 +9,7 @@ export class CourseBorderDirective implements AfterViewInit {
   constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   changeBorderColor(date: Date) {
-    const courseDate = date.getTime()
+    const courseDate = date?.getTime()
     const today = new Date().getTime()
     const lastTwoWeeks = today - (14 * 24 * 60 * 60 * 1000)
 

@@ -92,7 +92,13 @@
       "dateCreation": "2024-02-05T21:00:00.000Z",
       "duration": 50,
       "description": "test about",
-      "topRated": false
+      "topRated": false,
+      "authors": [
+        {
+          "id": 13,
+          "name": "Marilyn Monroe"
+        }
+      ]
     },
     {
       "id": 1707136612682,
@@ -208,6 +214,83 @@
     }
   ],
   "user": [
+    {
+      "login": "oceanauticatest+43015",
+      "token": "uhkj,m52oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "uhkj,m52",
+      "id": 1
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "bhjkl;8456anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "bhjkl;8456",
+      "id": 2
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "hkj985623anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "hkj985623",
+      "id": 3
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "dfghnj6523oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "dfghnj6523",
+      "id": 4
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "nm5gh4oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "nm5gh4",
+      "id": 5
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "hjnmk,l45263anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "hjnmk,l45263",
+      "id": 6
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "hjkl;'52anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "hjkl;'52",
+      "id": 7
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "gvnhb894 65oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "gvnhb894 65",
+      "id": 8
+    },
+    {
+      "login": "anastasiyap999",
+      "token": "ghbmn8562anastasiyap999",
+      "email": "anastasiyap999@gmail.com",
+      "password": "ghbmn8562",
+      "id": 9
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "dfdfgvb852oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "dfdfgvb852",
+      "id": 10
+    },
+    {
+      "login": "oceanauticatest+43015",
+      "token": "yghjbn852oceanauticatest+43015",
+      "email": "oceanauticatest+43015@gmail.com",
+      "password": "yghjbn852",
+      "id": 11
+    }
   ],
   "authors": [
     {

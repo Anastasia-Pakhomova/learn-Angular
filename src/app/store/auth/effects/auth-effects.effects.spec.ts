@@ -2,21 +2,28 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { AuthEffectsEffects } from './auth-effects.effects';
+import { AuthEffects } from './auth-effects.effects';
+import {HttpClientModule} from "@angular/common/http";
+import {createMockStore, MockStore, provideMockStore} from "@ngrx/store/testing";
+import {initialState, State} from "../reducers/auth-reducer.reducer";
 
-describe('AuthEffectsEffects', () => {
+describe('AuthEffects', () => {
   let actions$: Observable<any>;
-  let effects: AuthEffectsEffects;
+  let effects: AuthEffects;
+  let store: MockStore<State> = createMockStore({ initialState })
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        AuthEffectsEffects,
-        provideMockActions(() => actions$)
-      ]
+        AuthEffects,
+        provideMockActions(() => actions$),
+        provideMockStore({ initialState })
+      ],
+      imports: [HttpClientModule],
     });
 
-    effects = TestBed.inject(AuthEffectsEffects);
+    effects = TestBed.inject(AuthEffects);
+    store = TestBed.inject(MockStore)
   });
 
   it('should be created', () => {

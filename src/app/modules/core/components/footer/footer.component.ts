@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  public year: number = 2023
+  public year = 2023
 
   ngOnInit(): void {
     this.year =  new Date(). getFullYear()
