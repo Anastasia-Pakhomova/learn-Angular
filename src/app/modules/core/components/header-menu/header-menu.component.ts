@@ -6,9 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./header-menu.component.scss']
 })
 export class HeaderMenuComponent {
-  @Input() name: string = ''
+  @Input() name = ''
   @Output() logout = new EventEmitter<string>()
-  
+
   onLogout() {
     this.logout.emit(this.name)
   }

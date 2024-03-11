@@ -5,7 +5,7 @@ export interface CourseInterface {
     duration: number
     description: string
     topRated: boolean
-    authors: string[]
+    authors: IAuthor[]
 }
 
 export interface IBreadcrumbsItems {

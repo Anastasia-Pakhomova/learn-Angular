@@ -1,7 +1,7 @@
 import {inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/authentication/auth.service';
-import {Observable, tap} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 
 export const authGuard = (): Observable<boolean> => {
   const authService = inject(AuthService);
@@ -9,7 +9,7 @@ export const authGuard = (): Observable<boolean> => {
 
   return authService.getIsAuthenticated
     .pipe(
-    tap(response => {
+    map((response: boolean) => {
       if(!response) {
         router.navigateByUrl('/login')
         return false

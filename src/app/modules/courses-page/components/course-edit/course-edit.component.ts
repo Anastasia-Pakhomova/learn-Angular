@@ -17,7 +17,7 @@ import {createCourse, getAuthors, getCourse, updateCourse} from "src/app/store/c
 })
 export class CourseEditComponent implements OnInit {
   public formTitle = ''
-  private route =''
+  route =''
   public authorsList: Observable<IAuthor[]> = this.store.select(selectAuthors)
 
   constructor(
@@ -43,7 +43,7 @@ export class CourseEditComponent implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.maxLength(500)]],
     duration: [0, [Validators.required, Validators.min(30), Validators.pattern(/^\d+$/)]],
-    dateCreation: [new Date(), [Validators.required]],
+    dateCreation: ['', [Validators.required]],
     authors: [[], [Validators.required, authorsValidator]]
   })
 

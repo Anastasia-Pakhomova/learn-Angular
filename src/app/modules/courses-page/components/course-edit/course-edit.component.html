@@ -5,7 +5,7 @@
     <h2>{{formTitle}}</h2>
     <div class="flex flex-column">
       <label class="label text-sm" htmlFor="title">Наименование*</label>
-      <input class="field" pInputText id="title" formControlName="title" />
+      <input class="field courseForm-field" pInputText id="title" formControlName="title" />
       <small *ngIf="title.invalid && title.touched" class="invalid-message p-error">
         <p *ngIf="title.errors?.['required']">This field is required</p>
         <p *ngIf="title.errors?.['maxlength']">The title length must be less than 50 characters</p>
@@ -15,7 +15,7 @@
       <label class="label text-sm" htmlFor="description">Описание*</label>
       <textarea
       id="description"
-      class="field field_textarea"
+      class="field field_textarea courseForm-field"
       pInputTextarea
       autoResize="true"
       formControlName="description">
@@ -33,15 +33,17 @@
     <div class="flex flex-column">
       <label class="label text-sm">Дата*</label>
       <p-calendar
+        id="dateCreation"
         dateFormat="dd/mm/yy"
         formControlName="dateCreation"
+        class="courseForm-field"
         [showIcon]="true">
       </p-calendar>
       <small *ngIf="dateCreation.invalid && dateCreation.touched" class="invalid-message p-error">
         <p *ngIf="dateCreation.hasError('required')">This field is required</p>
       </small>
     </div>
-    <app-course-edit-authors 
+    <app-course-edit-authors
     [authorsList] = "(authorsList | async) || []"
     [parentForm]="courseForm">
     </app-course-edit-authors>

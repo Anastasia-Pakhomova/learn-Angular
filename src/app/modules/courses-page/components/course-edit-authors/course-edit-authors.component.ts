@@ -15,8 +15,8 @@ export class CourseEditAuthorsComponent {
   filteredAuthors: IAuthor[] = []
 
   filterAuthors(event: any) {
-    let filtered: any[] = [];
-    let query = event.query;
+    const filtered: any[] = [];
+    const query = event.query;
     this.authorsList.forEach(item => {
       if (item.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(item)

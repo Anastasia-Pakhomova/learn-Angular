@@ -9,7 +9,6 @@ import {Subscription} from "rxjs";
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-
   subscription = new Subscription()
   public isCoursePage = false
 

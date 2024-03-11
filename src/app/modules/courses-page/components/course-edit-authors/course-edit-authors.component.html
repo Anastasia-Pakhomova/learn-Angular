@@ -1,13 +1,14 @@
 <div [formGroup]="parentForm" class="wrapper">
     <span class="p-fluid flex flex-column">
         <label class="label text-sm" htmlFor="authors">Авторы*</label>
-        <p-autoComplete 
+        <p-autoComplete
         id="authors"
         formControlName="authors"
-        [suggestions]="filteredAuthors" 
-        (completeMethod)="filterAuthors($event)" 
+        [suggestions]="filteredAuthors"
+        (completeMethod)="filterAuthors($event)"
         field="name"
-        [multiple]="true"> 
+        [multiple]="true"
+        class="courseForm-field">
         </p-autoComplete>
     </span>
     <small *ngIf="authors.invalid && authors.touched" class="invalid-message p-error">
